@@ -3,7 +3,7 @@ import { Container } from '../../styles/global';
 
 export const Footer = styled.footer`
   width: 100%;
-  height: 80px;
+  height: 120px;
   background: #f0f0f7;
   border-top: 1px solid #aaaa;
 `;
