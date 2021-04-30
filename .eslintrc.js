@@ -29,5 +29,6 @@ module.exports = {
     'keyword-spacing': 'off',
     'arrow-body-style': 'off',
     'react/destructuring-assignment': 'off',
+    'import/prefer-default-export': 'off',
   },
 };
