@@ -1,5 +1,9 @@
+import { HomeContainer, HomeHeader } from './styles';
+
 export default () => {
   return(
-    <h1>Home</h1>
+    <HomeContainer>
+      Test
+    </HomeContainer>
   );
 };

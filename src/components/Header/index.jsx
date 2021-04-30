@@ -48,25 +48,25 @@ export default () => {
           </MobileIcon>
           <NavMenu onClick={handleClick} click={click}>
             <NavItem>
-              <NavLinks to="/">Home</NavLinks>
+              <NavLinks to="/adoptions">Adote</NavLinks>
             </NavItem>
             <NavItem>
-              <NavLinks to="/">Products</NavLinks>
+              <NavLinks to="/contribute">Contribuir</NavLinks>
             </NavItem>
             <NavItem>
-              <NavLinks to="/">About</NavLinks>
+              <NavLinks to="/about">Quem somos</NavLinks>
             </NavItem>
             <NavItem>
-              <NavLinks to="/">Contact</NavLinks>
+              <NavLinks to="/contact">Contato</NavLinks>
             </NavItem>
             <NavItemBtn>
               { button ? (
-                <NavBtnLink to="/sign-up">
-                  <Button primary>SIGN UP</Button>
+                <NavBtnLink to="/login">
+                  <Button primary>ENTRAR</Button>
                 </NavBtnLink>
               ) : (
-                <NavBtnLink to="/sign-up">
-                  <Button fontBig primary>SIGN UP</Button>
+                <NavBtnLink to="/login">
+                  <Button fontBig primary>ENTRAR</Button>
                 </NavBtnLink>
               ) }
             </NavItemBtn>

@@ -9,7 +9,7 @@ export default ({ children }) => {
       <div>
         <Header />
       </div>
-      <div>
+      <div style={{ background: '#f0f0f7' }}>
         {children}
       </div>
       <div>
