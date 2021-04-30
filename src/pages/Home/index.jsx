@@ -1,9 +1,19 @@
-import { HomeContainer, HomeHeader } from './styles';
+import {
+  HomeContainer,
+  HomeHeader,
+  HomeHeaderTitle,
+  HomeHeaderSubtitle,
+  HomeHeaderText,
+} from './styles';
 
 export default () => {
   return(
     <HomeContainer>
-      Test
+      <HomeHeader>
+        <HomeHeaderTitle>
+          Bora adotar um novo amigo?
+        </HomeHeaderTitle>
+      </HomeHeader>
     </HomeContainer>
   );
 };
