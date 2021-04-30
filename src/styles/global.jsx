@@ -53,3 +53,13 @@ export const Button = styled.button`
     width: 100%;
   }
 `;
+
+export const Input = styled.input`
+  width: ${({ desk }) => (desk ? '400px' : '220px')};
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: .6em;
+  padding-left: .8em;
+  margin: 1em 0;
+`;
