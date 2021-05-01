@@ -4,7 +4,6 @@ import { Container, Button } from '../../styles/global';
 
 export const LoginContainer = styled(Container)`
   width: 100%;
-  max-width: 1300px;
   min-height: calc(100vh - 210px);
   display: flex;
   justify-content: center;
@@ -26,19 +25,22 @@ export const SignUpSection = styled.div`
   align-items: center;
   flex-direction: column;
 
-  @media screen and (max-witdh: 960px) {
-    min-width: 300px;
-  } 
+  Button {
+    @media(max-width: 960px) {
+      width: 200px;
+    } 
+  }
 `;
 
 export const LoginSection = styled.div`
-  width: 50%;
   min-width: 500px;
   height: 100%;
   background: #0ff;
 
-  @media screen and (max-witdh: 960px) {
-    min-width: 300px;
+  @media(max-width: 960px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   } 
 `;
 
@@ -56,14 +58,14 @@ export const Title = styled.h2`
   margin: 1.2em 0;
 `;
 
-export const LoginLink = styled(Link)`
+export const IntLink = styled(Link)`
   text-decoration: none;
   font-weight: 600;
   color: #000;
 `;
 
 export const Form = styled.form`
-  max-width: 440px;
+  width: 440px;
   height: 400px;
   display: flex;
   justify-content: center;

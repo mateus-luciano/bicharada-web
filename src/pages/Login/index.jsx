@@ -8,7 +8,7 @@ import {
   LoginSection,
   Image,
   Title,
-  LoginLink,
+  IntLink,
   Form,
 } from './styles';
 
@@ -20,11 +20,11 @@ export default () => {
         <Title>
           AINDA NÃO TEM CONTA?
         </Title>
-        <Button>
-          <LoginLink to="/sign-up">
+        <IntLink to="/sign-up">
+          <Button>
             Cadastrar-se
-          </LoginLink>
-        </Button>
+          </Button>
+        </IntLink>
       </SignUpSection>
       <LoginSection>
         <Form>
