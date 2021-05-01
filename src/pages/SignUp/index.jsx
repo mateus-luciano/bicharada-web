@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Input, Button } from '../../styles/global';
 
 import LoginImage from '../../assets/images/undraw_Access_account_re_8spm.svg';

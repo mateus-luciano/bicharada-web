@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { Container, Button } from '../../styles/global';
+import { Container } from '../../styles/global';
 
 export const LoginContainer = styled(Container)`
   width: 100%;
@@ -12,7 +12,7 @@ export const LoginContainer = styled(Container)`
 
   @media(max-width: 960px) {
     flex-direction: column-reverse;
-  } 
+  }  
 `;
 
 export const SignUpSection = styled.div`
@@ -74,10 +74,20 @@ export const Form = styled.form`
   margin: 1em;
   background: #f00;
 
+  @media(max-width: 420px) {
+    width: 375px;
+  } 
+
   Button {
     @media(max-width: 960px) {
       width: 300px;
       margin-top: 2em;
+    } 
+  }
+
+  Input {
+    @media(max-width: 420px) {
+      width: 340px;
     } 
   }
 `;

@@ -74,10 +74,20 @@ export const Form = styled.form`
   margin: 1em;
   background: #f00;
 
+  @media(max-width: 500px) {
+    width: 375px;
+  } 
+
   Button {
     @media(max-width: 960px) {
       width: 300px;
       margin-top: 2em;
+    } 
+  }
+
+  Input {
+    @media(max-width: 500px) {
+      width: 340px;
     } 
   }
 `;

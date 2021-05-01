@@ -31,6 +31,10 @@ export const NavLogo = styled(Link)`
   text-transform: uppercase;
   color: #fff;
   font-size: 2em;
+
+  @media(max-width: 420px) {
+    font-size: 1.4em;
+  } 
 `;
 
 export const NavIcon = styled(GiHollowCat)`
