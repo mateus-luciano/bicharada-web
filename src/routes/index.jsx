@@ -20,7 +20,7 @@ export default () => (
       <Route path="/adoptions" component={Adoption} />
       <Route path="/contact" component={Contact} />
       <Route path="/contribute" component={Contribute} />
-      <Route path="/notfound" component={NotFound} />
+      <Route component={NotFound} />
     </Switch>
   </BrowserRouter>
 );
