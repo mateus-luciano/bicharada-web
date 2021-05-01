@@ -32,7 +32,7 @@ export default () => {
         email,
         password,
       });
-      console.log(response.data);
+
       const isAdmin = response?.data?.user?.admin;
       dispatch(userActions.login(response.data));
     } catch (error) {
