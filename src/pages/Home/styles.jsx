@@ -8,18 +8,9 @@ export const HomeContainer = styled(Container)`
   justify-content: center;
   align-items: center;
   flex-direction: row;
-`;
 
-export const HomeHeader = styled.header`
-  width: 100%;
-  height: 200px;
-  display: flex;
-  flex-direction: row;
-  padding: .6em;
-  background: #f00;
-
-  @media(max-width: 960px) {
-    background: #0ff;
+  @media(max-width: 768px) {
+    flex-direction: column;
   } 
 `;
 
@@ -37,6 +28,10 @@ export const TextWrapper = styled.div`
         text-decoration: none;
       }
     }
+
+  @media(max-width: 768px) {
+    margin: 2em 0;
+  } 
 `;
 
 export const Heading = styled.h1`
@@ -50,6 +45,10 @@ export const Subtitle = styled.h2`
   letter-spacing: 2.4px;
   color: #101522;
   margin-top: .2em;
+
+  @media(max-width: 768px) {
+    font-size: 2.6em;
+  } 
 `;
 
 export const Text = styled.h2`
@@ -58,6 +57,10 @@ export const Text = styled.h2`
   text-indent: 1em;
   margin-top: .6em;
   color: #a9b3c1;
+
+  @media(max-width: 768px) {
+    padding: 0 2em;
+  }
 `;
 
 export const ImageWrapper = styled.div`
