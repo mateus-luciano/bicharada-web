@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { Input, Button } from '../../styles/global';
 
 import LoginImage from '../../assets/images/undraw_Access_account_re_8spm.svg';
+
+import api from '../../services/api';
 
 import {
   LoginContainer,
@@ -13,6 +16,9 @@ import {
 } from './styles';
 
 export default () => {
+  const [email, setEmail] = useState(null);
+  const [password, setPassword] = useState(null);
+
   return(
     <LoginContainer>
       <SignUpSection>
