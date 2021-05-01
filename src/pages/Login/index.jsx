@@ -26,7 +26,7 @@ export default () => {
 
   async function handleStoreLogin(e) {
     e.preventDefault();
-    console.log('aqui');
+
     try {
       const response = await api.post('/login', {
         email,
