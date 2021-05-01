@@ -1,35 +1,40 @@
 /* eslint-disable max-len */
+import { Link } from 'react-router-dom';
+import { Button } from '../../styles/global';
 import {
   HomeContainer,
-  HomeHeader,
-  HomeHeaderTitle,
-  HomeHeaderSubtitle,
-  HomeHeaderText,
-  HomeMain,
+  TextWrapper,
+  Heading,
+  Subtitle,
+  Text,
+  ImageWrapper,
+  Image,
 } from './styles';
 
-import Adoptions from '../../components/Adoptions';
+import image from '../../assets/images/undraw_Access_account_re_8spm.svg';
 
 export default () => {
   return(
     <HomeContainer>
-      <HomeHeader>
-        <HomeHeaderTitle>
-          Bora adotar um novo amigo?
-        </HomeHeaderTitle>
-        <HomeHeaderSubtitle>
-          Lorem Ipsum
-        </HomeHeaderSubtitle>
-        <HomeHeaderText>
+      <TextWrapper>
+        <Heading>
+          Procurando um novo amigo?
+        </Heading>
+        <Subtitle>
+          Faça login para dar um novo lar a um pet
+        </Subtitle>
+        <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu ipsum commodo odio venenatis porta non eget dui. Ut nisl enim, rutrum at bibendum efficitur, tempus eget ligula.
-        </HomeHeaderText>
-        <HomeHeaderText>
-          Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Sed et augue venenatis eros accumsan scelerisque. Fusce lacinia in est in dictum. Proin pharetra sit amet sem vitae tempus. Praesent commodo nulla sed efficitur dignissim.
-        </HomeHeaderText>
-      </HomeHeader>
-      <HomeMain>
-        <Adoptions title="test 1" text="test 1" />
-      </HomeMain>
+        </Text>
+        <Button>
+          <Link to="/adoptions">
+            Adotar
+          </Link>
+        </Button>
+      </TextWrapper>
+      <ImageWrapper>
+        <Image src={image} />
+      </ImageWrapper>
     </HomeContainer>
   );
 };
