@@ -8,6 +8,8 @@ import {
   HomeMain,
 } from './styles';
 
+import Adoptions from '../../components/Adoptions';
+
 export default () => {
   return(
     <HomeContainer>
@@ -26,7 +28,7 @@ export default () => {
         </HomeHeaderText>
       </HomeHeader>
       <HomeMain>
-        test
+        <Adoptions title="test 1" text="test 1" />
       </HomeMain>
     </HomeContainer>
   );

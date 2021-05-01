@@ -11,6 +11,10 @@ export const HomeHeader = styled.header`
   height: 200px;
   padding: .6em;
   background: #f00;
+
+  @media(max-width: 960px) {
+    background: #0ff;
+  } 
 `;
 
 export const HomeHeaderTitle = styled.h1`

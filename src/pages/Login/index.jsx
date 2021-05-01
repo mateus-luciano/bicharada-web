@@ -1,9 +1,14 @@
-import { Link } from 'react-router-dom';
 import { Input, Button } from '../../styles/global';
+
+import LoginImage from '../../assets/images/undraw_Access_account_re_8spm.svg';
+
 import {
   LoginContainer,
   SignUpSection,
   LoginSection,
+  Image,
+  Title,
+  LoginLink,
   Form,
 } from './styles';
 
@@ -11,11 +16,14 @@ export default () => {
   return(
     <LoginContainer>
       <SignUpSection>
-        AINDA NÃO TEM CONTA?
+        <Image src={LoginImage} />
+        <Title>
+          AINDA NÃO TEM CONTA?
+        </Title>
         <Button>
-          <Link to="/sign-up">
+          <LoginLink to="/sign-up">
             Cadastrar-se
-          </Link>
+          </LoginLink>
         </Button>
       </SignUpSection>
       <LoginSection>

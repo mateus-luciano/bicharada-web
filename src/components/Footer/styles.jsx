@@ -6,6 +6,10 @@ export const Footer = styled.footer`
   height: 120px;
   background: #f0f0f7;
   border-top: 1px solid #aaaa;
+  
+  @media screen and (max-witdh: 460px) {
+    background: #0ff;
+  } 
 `;
 
 export const FooterContainer = styled(Container)`
