@@ -19,8 +19,8 @@ import {
 } from './styles';
 
 export default () => {
-  const [email, setEmail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const dispatch = useDispatch();
 
@@ -54,21 +54,22 @@ export default () => {
         </IntLink>
       </SignUpSection>
       <LoginSection>
-        <Form>
+        <Form onSubmit={handleStoreLogin}>
           <h2>Login</h2>
           <Input
             desk
-            id="email"
+            name="email"
             placeholder="E-mail"
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
             desk
-            id="password"
+            name="password"
+            type="password"
             placeholder="Senha"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button type="button" onClick={handleStoreLogin}>
+          <Button type="submit">
             Entrar
           </Button>
         </Form>
