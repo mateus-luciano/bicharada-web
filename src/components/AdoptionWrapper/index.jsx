@@ -14,7 +14,7 @@ export default ({
 }) => {
   return(
     <Wrapper>
-      <Image>{image}</Image>
+      <Image src={image} alt={title} />
       <Title>{title}</Title>
       <Text>{text}</Text>
       <TextCity>{city}</TextCity>

@@ -1,18 +1,19 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  width: 340px;
-  height: 340px;
+  width: 300px;
+  height: 380px;
   background: #aaa;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 1em .4em;
 `;
 
 export const Image = styled.img`
-  width: 320px;
-  height: 320px;
+  width: 220px;
+  height: 220px;
   margin: 0 auto;
 `;
 
