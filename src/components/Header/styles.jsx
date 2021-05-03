@@ -4,7 +4,7 @@ import { GiHollowCat } from 'react-icons/gi';
 import { Container } from '../../styles/global';
 
 export const Nav = styled.nav`
-  background: #101522;
+  background: #0b8653;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -80,7 +80,8 @@ export const NavItem = styled.li`
   border-bottom: 2px solid transparent;
 
   &:hover {
-    border-bottom: 2px solid #4b59f7;
+    /* border-bottom: 2px solid #075232; */
+    border-bottom: 2px solid #d36205;
   }
 
   @media screen and (max-witdh: 960px) {
