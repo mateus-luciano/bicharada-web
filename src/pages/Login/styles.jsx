@@ -18,7 +18,6 @@ export const LoginContainer = styled(Container)`
 export const SignUpSection = styled.div`
   min-width: 500px;
   height: 100%;
-  background: #00f;
   padding: 1em;
   display: flex;
   justify-content: center;
@@ -35,7 +34,7 @@ export const SignUpSection = styled.div`
 export const LoginSection = styled.div`
   min-width: 500px;
   height: 100%;
-  background: #0ff;
+  background: #aaa;
 
   @media(max-width: 960px) {
     display: flex;
@@ -72,7 +71,6 @@ export const Form = styled.form`
   align-items: center;
   flex-direction: column;
   margin: 1em;
-  background: #f00;
 
   @media(max-width: 420px) {
     width: 375px;
