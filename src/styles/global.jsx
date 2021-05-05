@@ -31,6 +31,14 @@ export const Container = styled.div`
     padding-right: 30px;
     padding-left: 30px;
   }
+
+  /* @media(max-width: 1366px) {
+    max-width: 1300px;
+  }  */
+
+  /* @media(max-width: 1920px) {
+    max-width: 1800px;
+  }  */
 `;
 
 export const Button = styled.button`
