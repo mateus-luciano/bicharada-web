@@ -17,7 +17,7 @@ export default () => (
       <Route path="/sign-up" component={SignUp} />
       <Route path="/login" component={Login} />
       <Route path="/about" component={About} />
-      <Route path="/adoptions" component={Adoption} />
+      <Route path="/adoptions" exact component={Adoption} />
       <Route path="/contact" component={Contact} />
       <Route path="/contribute" component={Contribute} />
       <Route component={NotFound} />

@@ -41,6 +41,7 @@ export const FormHeader = styled.form`
   display: flex;
   flex-direction: row;
   margin-top: 10px;
+  margin-left: 20px;
 `;
 
 export const CheckBoxContainer = styled.div`
