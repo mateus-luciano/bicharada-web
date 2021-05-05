@@ -35,7 +35,6 @@ export default () => {
         phone,
         city,
       });
-      console.log(response);
     } catch (error) {
       setShowErrorAlert(true);
     }
