@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { Input, Button } from '../../styles/global';
 
 import LoginImage from '../../assets/images/undraw_Access_account_re_8spm.svg';
@@ -19,6 +20,8 @@ import {
 } from './styles';
 
 export default () => {
+  const history = useHistory();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showErrorAlert, setShowErrorAlert] = useState(false);
@@ -32,9 +35,21 @@ export default () => {
         email,
         password,
       });
+      const tokenApi = response.data.token;
+      console.log(tokenApi);
+      localStorage.setItem('token', tokenApi);
       console.log(response.data);
-      const isAdmin = response?.data?.user?.admin;
-      dispatch(userActions.login(response.data));
+      // const isAdmin = response?.data?.user?.admin;
+      // dispatch(userActions.login(response.data));
+      if (response) {
+        dispatch(
+          userActions.login({
+            email,
+            tokenApi,
+          }),
+        );
+        history.push('/dashboard');
+      }
     } catch (error) {
       setShowErrorAlert(true);
     }
