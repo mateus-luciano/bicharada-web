@@ -38,6 +38,10 @@ export default () => {
         </TopHeader>
         <FormHeader>
           <CheckBoxContainer>
+            <LabelCheckBoxHeader for="all">Todos</LabelCheckBoxHeader>
+            <CheckBoxHeader type="checkbox" id="all" />
+          </CheckBoxContainer>
+          <CheckBoxContainer>
             <LabelCheckBoxHeader for="dog">Cachorros</LabelCheckBoxHeader>
             <CheckBoxHeader type="checkbox" id="dog" />
           </CheckBoxContainer>
