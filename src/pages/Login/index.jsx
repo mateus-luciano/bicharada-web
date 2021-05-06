@@ -39,13 +39,9 @@ export default () => {
         password,
       });
       // const tokenApi = response?.data?.token;
-      const { uid, name } = response?.data?.user;
-      console.log(uid, name);
       // console.log(tokenApi);
       // localStorage.setItem('token', tokenApi);
-      console.log(response.data);
       const isAdmin = response?.data?.user?.admin;
-      console.log(isAdmin);
       // dispatch(userActions.login(response.data));
       if (response) {
         dispatch(

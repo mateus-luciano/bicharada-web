@@ -20,7 +20,6 @@ export default () => {
       const response = await api.get(`/users/${userData?.user?.uid}`, {
         headers: { Authorization: `Bearer ${userData?.token}` },
       });
-      console.log(response.data);
       setMyAdoptions(response?.data?.adoptions);
       setLoading(false);
     } catch (error) {
