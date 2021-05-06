@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+// import {  } from '@material-ui/core';
 import { Input, Button } from '../../styles/global';
 
 import LoginImage from '../../assets/images/undraw_Access_account_re_8spm.svg';
@@ -35,18 +36,18 @@ export default () => {
         email,
         password,
       });
-      const tokenApi = response.data.token;
-      console.log(tokenApi);
-      localStorage.setItem('token', tokenApi);
+      // const tokenApi = response?.data?.token;
+      const { uid, name } = response?.data?.user;
+      console.log(uid, name);
+      // console.log(tokenApi);
+      // localStorage.setItem('token', tokenApi);
       console.log(response.data);
-      // const isAdmin = response?.data?.user?.admin;
+      const isAdmin = response?.data?.user?.admin;
+      console.log(isAdmin);
       // dispatch(userActions.login(response.data));
       if (response) {
         dispatch(
-          userActions.login({
-            email,
-            tokenApi,
-          }),
+          userActions.login(response.data),
         );
         history.push('/dashboard');
       }
