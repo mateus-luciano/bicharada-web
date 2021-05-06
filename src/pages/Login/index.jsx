@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 // import {  } from '@material-ui/core';
 import { Input, Button } from '../../styles/global';
-
+import Spinner from '../../components/Spinner';
 import LoginImage from '../../assets/images/undraw_Access_account_re_8spm.svg';
 
 import api from '../../services/api';
@@ -26,11 +26,13 @@ export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showErrorAlert, setShowErrorAlert] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   async function handleStoreLogin(e) {
     e.preventDefault();
 
+    setLoading(true);
     try {
       const response = await api.post('/login', {
         email,
@@ -51,13 +53,17 @@ export default () => {
         );
         history.push('/dashboard');
       }
+      setLoading(false);
     } catch (error) {
       setShowErrorAlert(true);
+      setLoading(false);
     }
+    setLoading(false);
   }
 
   return(
     <LoginContainer>
+      <Spinner visible={loading} />
       <SignUpSection>
         <Image src={LoginImage} />
         <Title>
