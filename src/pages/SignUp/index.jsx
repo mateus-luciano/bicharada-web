@@ -1,7 +1,16 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Input, Button } from '../../styles/global';
+
+import {
+  FormControl,
+  Select,
+  MenuItem,
+  FormHelperText,
+  TextField,
+} from '@material-ui/core';
+
+import { Button } from '../../styles/global';
 
 import Spinner from '../../components/Spinner';
 
@@ -18,6 +27,7 @@ import {
   IntLink,
   Image,
   Form,
+  Input,
 } from './styles';
 
 export default () => {
@@ -28,9 +38,15 @@ export default () => {
   const [password, setPassword] = useState('');
   const [phone, setPhone] = useState('');
   const [city, setCity] = useState('');
+  const [region, setRegion] = useState('');
   const [loading, setLoading] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const dispatch = useDispatch();
+
+  const handleChange = (event) => {
+    setRegion(event.target.value);
+    console.log(region);
+  };
 
   async function handleStoreLogin() {
     setLoading(true);
@@ -95,35 +111,84 @@ export default () => {
         <Form onSubmit={handleStoreSignUp}>
           <h2>Sign up</h2>
           <Input
-            desk
-            name="name"
-            placeholder="Nome"
+            id="name"
+            label="Nome"
+            type="text"
+            variant="outlined"
+            value={name}
             onChange={(e) => setName(e.target.value)}
           />
           <Input
-            desk
-            name="email"
-            placeholder="E-mail"
+            id="email"
+            label="E-mail"
+            type="text"
+            variant="outlined"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
-            desk
-            name="password"
-            placeholder="Senha"
+            id="password"
+            label="Senha"
+            type="password"
+            variant="outlined"
+            value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
           <Input
-            desk
-            name="phone"
-            placeholder="Telefone"
+            id="phone"
+            label="Celular"
+            type="text"
+            variant="outlined"
+            value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
-          <Input
-            desk
-            name="city"
-            placeholder="Cidade"
-            onChange={(e) => setCity(e.target.value)}
-          />
+          <FormControl>
+            <Select
+              value={region}
+              onChange={handleChange}
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+            >
+              <MenuItem value="" disabled>
+                Região
+              </MenuItem>
+              <MenuItem value={1}>Vale do Paranhana</MenuItem>
+              <MenuItem value={2}>Vale do Sinos</MenuItem>
+            </Select>
+            <FormHelperText>Selecione a sua região</FormHelperText>
+          </FormControl>
+          <FormControl>
+            { region === 1 ? (
+              <Select
+                value={city}
+                onChange={handleChange}
+                displayEmpty
+                inputProps={{ 'aria-label': 'Without label' }}
+              >
+                <MenuItem value="" disabled>
+                  Cidade
+                </MenuItem>
+                <MenuItem value="Parobé">Parobé</MenuItem>
+                <MenuItem value="Taquara">Taquara</MenuItem>
+                <MenuItem value="Igrjinha">Igrejinha</MenuItem>
+              </Select>
+            ) : (
+              <Select
+                value={city}
+                onChange={handleChange}
+                displayEmpty
+                inputProps={{ 'aria-label': 'Without label' }}
+              >
+                <MenuItem value="" disabled>
+                  Cidade
+                </MenuItem>
+                <MenuItem value="Sapiranga">Sapiranga</MenuItem>
+                <MenuItem value="Campo Bom">Campo Bom</MenuItem>
+                <MenuItem value="Novo Hamburgo">Novo Hamburgo</MenuItem>
+              </Select>
+            ) }
+            <FormHelperText>Selecione a sua cidade</FormHelperText>
+          </FormControl>
           <Button type="submit">
             Salvar
           </Button>
