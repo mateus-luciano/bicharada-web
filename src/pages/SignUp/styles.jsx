@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { TextField, Button } from '@material-ui/core';
+import {
+  TextField,
+  Button,
+  FormControl,
+  Select,
+  MenuItem,
+  FormHelperText,
+} from '@material-ui/core';
 import { Container } from '../../styles/global';
 
 export const SignUpContainer = styled(Container)`
@@ -66,11 +73,10 @@ export const Image = styled.img`
 `;
 
 export const Input = styled(TextField)`
-  width: 300px;
   height: 62px;
-  // background: #fff;
 
   input {
+    width: 340px;
     // height: 12px;
     background: #c7c7c7;
     border-radius: 4px;
@@ -78,6 +84,11 @@ export const Input = styled(TextField)`
     &::placeholder {
       padding-bottom: 40px;
       padding-left: 10px;
+    }
+
+    &:focus {
+      background: #c7c7c7;
+      // border-color: #000;
     }
   }
 `;
@@ -107,4 +118,11 @@ export const Form = styled.form`
       width: 340px;
     } 
   }
+`;
+
+export const SelectContainer = styled.div`
+  width: 360px;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0 20px 0;
 `;

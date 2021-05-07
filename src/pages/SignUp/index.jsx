@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 
 import {
   FormControl,
   Select,
   MenuItem,
   FormHelperText,
-  TextField,
 } from '@material-ui/core';
 
 import { Button } from '../../styles/global';
@@ -28,6 +28,7 @@ import {
   Image,
   Form,
   Input,
+  SelectContainer,
 } from './styles';
 
 export default () => {
@@ -45,7 +46,6 @@ export default () => {
 
   const handleChange = (event) => {
     setRegion(event.target.value);
-    console.log(region);
   };
 
   async function handleStoreLogin() {
@@ -83,7 +83,7 @@ export default () => {
       });
 
       if (response.status === 201) {
-        // login
+        // todo login
         handleStoreLogin();
       }
     } catch (error) {
@@ -121,7 +121,7 @@ export default () => {
           <Input
             id="email"
             label="E-mail"
-            type="text"
+            type="email"
             variant="outlined"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -134,61 +134,75 @@ export default () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Input
-            id="phone"
-            label="Celular"
-            type="text"
-            variant="outlined"
-            value={phone}
+          <InputMask
+            mask="(99) 9 9999-9999"
             onChange={(e) => setPhone(e.target.value)}
-          />
-          <FormControl>
-            <Select
-              value={region}
-              onChange={handleChange}
-              displayEmpty
-              inputProps={{ 'aria-label': 'Without label' }}
+          >
+            {() => (
+              <Input
+                id="phone"
+                label="Celular"
+                type="text"
+                variant="outlined"
+              />
+            )}
+          </InputMask>
+          <SelectContainer>
+            <FormControl
+              style={{ width: 170 }}
+              variant="outlined"
             >
-              <MenuItem value="" disabled>
-                Região
-              </MenuItem>
-              <MenuItem value={1}>Vale do Paranhana</MenuItem>
-              <MenuItem value={2}>Vale do Sinos</MenuItem>
-            </Select>
-            <FormHelperText>Selecione a sua região</FormHelperText>
-          </FormControl>
-          <FormControl>
-            { region === 1 ? (
               <Select
-                value={city}
+                value={region}
                 onChange={handleChange}
                 displayEmpty
                 inputProps={{ 'aria-label': 'Without label' }}
               >
                 <MenuItem value="" disabled>
-                  Cidade
+                  Região
                 </MenuItem>
-                <MenuItem value="Parobé">Parobé</MenuItem>
-                <MenuItem value="Taquara">Taquara</MenuItem>
-                <MenuItem value="Igrjinha">Igrejinha</MenuItem>
+                <MenuItem value={1}>Vale do Paranhana</MenuItem>
+                <MenuItem value={2}>Vale do Sinos</MenuItem>
               </Select>
-            ) : (
-              <Select
-                value={city}
-                onChange={handleChange}
-                displayEmpty
-                inputProps={{ 'aria-label': 'Without label' }}
-              >
-                <MenuItem value="" disabled>
-                  Cidade
-                </MenuItem>
-                <MenuItem value="Sapiranga">Sapiranga</MenuItem>
-                <MenuItem value="Campo Bom">Campo Bom</MenuItem>
-                <MenuItem value="Novo Hamburgo">Novo Hamburgo</MenuItem>
-              </Select>
-            ) }
-            <FormHelperText>Selecione a sua cidade</FormHelperText>
-          </FormControl>
+              <FormHelperText>Selecione a sua região</FormHelperText>
+            </FormControl>
+            <FormControl
+              style={{ width: 170 }}
+              variant="outlined"
+            >
+              { region === 1 ? (
+                <Select
+                  value={city}
+                  onChange={handleChange}
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem value="" disabled>
+                    Cidade
+                  </MenuItem>
+                  <MenuItem value="Parobé">Parobé</MenuItem>
+                  <MenuItem value="Taquara">Taquara</MenuItem>
+                  <MenuItem value="Igrjinha">Igrejinha</MenuItem>
+                </Select>
+              ) : (
+                <Select
+                  value={city}
+                  onChange={handleChange}
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                >
+                  <MenuItem value="" disabled>
+                    Cidade
+                  </MenuItem>
+                  <MenuItem value="Sapiranga">Sapiranga</MenuItem>
+                  <MenuItem value="Campo Bom">Campo Bom</MenuItem>
+                  <MenuItem value="Novo Hamburgo">Novo Hamburgo</MenuItem>
+                  <MenuItem value="Araricá">Araricá</MenuItem>
+                </Select>
+              ) }
+              <FormHelperText>Selecione a sua cidade</FormHelperText>
+            </FormControl>
+          </SelectContainer>
           <Button type="submit">
             Salvar
           </Button>
