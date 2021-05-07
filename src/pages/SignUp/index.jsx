@@ -33,9 +33,8 @@ export default () => {
   const dispatch = useDispatch();
 
   async function handleStoreLogin() {
+    setLoading(true);
     try {
-      setLoading(true);
-
       const response = await api.post('/login', {
         email,
         password,

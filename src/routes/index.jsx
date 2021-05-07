@@ -8,6 +8,7 @@ import Dashboard from '../pages/Dashboard';
 import NotFound from '../pages/NotFound';
 import About from '../pages/About';
 import Adoption from '../pages/Adoption';
+import AddAdoption from '../pages/AddAdoption';
 import Contact from '../pages/Contact';
 import Contribute from '../pages/Contribute';
 
@@ -20,6 +21,12 @@ export default () => (
       <Route path="/dashboard" isPrivate component={Dashboard} />
       <Route path="/about" component={About} />
       <Route path="/adoptions" exact component={Adoption} />
+      <Route
+        path="/adoptions/add"
+        exact
+        isPrivate
+        component={AddAdoption}
+      />
       <Route path="/contact" component={Contact} />
       <Route path="/contribute" component={Contribute} />
       <Route component={NotFound} />
