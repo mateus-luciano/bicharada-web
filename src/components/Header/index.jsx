@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { IconContext } from 'react-icons/lib';
 import { Button } from '../../styles/global';
@@ -19,6 +20,7 @@ import {
 import * as userActions from '../../store/modules/user/actions';
 
 export default () => {
+  const history = useHistory();
   const userData = useSelector((state) => state?.user);
 
   const [click, setClick] = useState(false);
@@ -40,7 +42,7 @@ export default () => {
 
   function onLogout() {
     dispatch(userActions.logout());
-    localStorage.removeItem('token');
+    history.push('/login');
   }
 
   window.addEventListener('resize', showButton);

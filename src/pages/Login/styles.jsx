@@ -35,6 +35,7 @@ export const LoginSection = styled.div`
   min-width: 500px;
   height: 100%;
   background: #aaa;
+  border-radius: 10px;
 
   @media(max-width: 960px) {
     display: flex;
