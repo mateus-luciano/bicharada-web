@@ -3,6 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 export default createGlobalStyle`
   root: {
     --background-color: #f0f0f7;
+    --primary-color: #0b8653;
   }
 
   * {
@@ -43,9 +44,9 @@ export const Container = styled.div`
 
 export const Button = styled.button`
   border-radius: 4px;
-  color: #fff;
+  color: #000;
   white-space: nowrap;
-  background: ${({ primary }) => (primary ? '#4b59f7' : '#0467fb')};
+  background: ${({ primary }) => (primary ? '#0de48a' : '#0467fb')};
   padding: ${({ big }) => (big ? '12px 64px' : '10px 20px')};
   font-size: ${({ fontBig }) => (fontBig ? '20px' : '16px')};
   outline: none;
@@ -54,7 +55,7 @@ export const Button = styled.button`
 
   &:hover {
     transition: all .3s ease-out;
-    background: ${({ primary }) => (primary ? '#0467fb' : '#4b59f7')};
+    background: ${({ primary }) => (primary ? '#0db871' : '#4b59f7')};
   }
 
   @media screen and (max-width: 960px) {

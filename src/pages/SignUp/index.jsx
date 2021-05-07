@@ -10,8 +10,6 @@ import api from '../../services/api';
 import * as userActions from '../../store/modules/user/actions';
 
 import LoginImage from '../../assets/images/undraw_Access_account_re_8spm.svg';
-// Fazer o esquema de quando estiver tudo clearTimeout, entra o loading e
-// faz o login e depois redireciona
 import {
   SignUpContainer,
   SignUpSection,
