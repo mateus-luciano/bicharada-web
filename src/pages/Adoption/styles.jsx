@@ -70,4 +70,11 @@ export const AdoptionMain = styled.main`
   flex-wrap: wrap;
 `;
 
+export const AdoptionFooter = styled.footer`
+  width: 100%;
+  padding: .8em 0;
+  display: flex;
+  justify-content: center;
+`;
+
 export const Title = styled.h1``;

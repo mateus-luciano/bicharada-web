@@ -1,6 +1,10 @@
-import AdoptionWrapper from '../../components/AdoptionWrapper';
+import { useState, useEffect } from 'react';
+import Pagination from '@material-ui/lab/Pagination';
 
-import test from '../../assets/images/undraw_Access_account_re_8spm.svg';
+import AdoptionWrapper from '../../components/AdoptionWrapper';
+import Spinner from '../../components/Spinner';
+
+import api from '../../services/api';
 
 import {
   AdoptionContainer,
@@ -14,16 +18,70 @@ import {
   LabelCheckBoxHeader,
   CheckBoxHeader,
   AdoptionMain,
+  AdoptionFooter,
 } from './styles';
 
 export default () => {
-  const options = [
-    { value: 'test', label: 'Vale do Paranhana' },
-    { value: 'tes2', label: 'Vale do Sinos' },
-  ];
+  const [loading, setLoading] = useState(false);
+  const [adoptions, setAdoptions] = useState([]);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(2);
+  const [count, setCount] = useState(1);
+  // const options = [
+  //   { value: 'test', label: 'Vale do Paranhana' },
+  //   { value: 'test2', label: 'Vale do Sinos' },
+  // ];
+  const options = [];
+
+  async function getRegionsData() {
+    try {
+      const { data } = await api.get('/regions');
+      data.forEach((region) => {
+        options.push({
+          value: region.uid,
+          label: region.name,
+        });
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
+  }
+
+  const handleChange = async (event, value) => {
+    setLoading(true);
+    try {
+      setPage(value);
+      setAdoptions([]);
+      const response = await api.get(`/adoptions?page=${value}&limit=${limit}`);
+      setAdoptions(response?.data.data);
+    } catch (error) {
+      setLoading(false);
+    }
+    setLoading(false);
+  };
+
+  async function getAdoptionsData() {
+    setLoading(true);
+
+    try {
+      const response = await api.get(`/adoptions?page=${page}&limit=${limit}`);
+      setAdoptions(response?.data.data);
+      setCount(response?.data?.total_pages);
+      setPage(response?.data?.current_page);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  }
+  useEffect(() => {
+    getAdoptionsData();
+    getRegionsData();
+  }, []);
 
   return(
     <AdoptionContainer>
+      <Spinner visible={loading} />
       <AdoptionHeader>
         <TopHeader>
           <HeaderSelect
@@ -56,43 +114,24 @@ export default () => {
         </FormHeader>
       </AdoptionHeader>
       <AdoptionMain>
-        <AdoptionWrapper
-          image={test}
-          title="Test"
-          text="test"
-          city="Parobé"
-        />
-        <AdoptionWrapper
-          image={test}
-          title="Test"
-          text="test"
-          city="Parobé"
-        />
-        <AdoptionWrapper
-          image={test}
-          title="Test"
-          text="test"
-          city="Parobé"
-        />
-        <AdoptionWrapper
-          image={test}
-          title="Test"
-          text="test"
-          city="Parobé"
-        />
-        <AdoptionWrapper
-          image={test}
-          title="Test"
-          text="test"
-          city="Parobé"
-        />
-        <AdoptionWrapper
-          image={test}
-          title="Test"
-          text="test"
-          city="Parobé"
-        />
+        {adoptions.map((adoption) => (
+          <AdoptionWrapper
+            key={adoption.uid}
+            image={adoption.title}
+            title={adoption.title}
+            text={adoption.description}
+            city={adoption.address}
+          />
+        ))}
       </AdoptionMain>
+      <AdoptionFooter>
+        <Pagination
+          count={count}
+          page={Number(page)}
+          onChange={handleChange}
+          shape="rounded"
+        />
+      </AdoptionFooter>
     </AdoptionContainer>
   );
 };
