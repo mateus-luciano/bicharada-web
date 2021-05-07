@@ -111,14 +111,6 @@ export default () => {
         <Form onSubmit={handleStoreSignUp}>
           <h2>Sign up</h2>
           <Input
-            id="name"
-            label="Nome"
-            type="text"
-            variant="outlined"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          <Input
             id="email"
             label="E-mail"
             type="email"
@@ -133,6 +125,14 @@ export default () => {
             variant="outlined"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+          />
+          <Input
+            id="name"
+            label="Nome"
+            type="text"
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <InputMask
             mask="(99) 9 9999-9999"

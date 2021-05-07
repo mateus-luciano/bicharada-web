@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
+import { TextField, Collapse } from '@material-ui/core';
 import { Container } from '../../styles/global';
 
 export const LoginContainer = styled(Container)`
@@ -91,6 +93,33 @@ export const Form = styled.form`
   }
 `;
 
+export const Input = styled(TextField)`
+  height: 62px;
+
+  input {
+    width: 340px;
+    background: #c7c7c7;
+    border-radius: 4px;
+
+    &::placeholder {
+      padding-bottom: 40px;
+      padding-left: 10px;
+    }
+
+    &:focus {
+      background: #c7c7c7;
+    }
+  }
+`;
+
 export const HomeHeaderTitle = styled.h1`
   font-size: 1.8em;
+`;
+
+export const CollapseDiv = styled(Collapse)`
+  height: 46px;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border-radius: 3px;
+  margin: 2%;
 `;
