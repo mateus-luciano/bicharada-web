@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { Alert } from '@material-ui/lab';
 
-import { InputAdornment, IconButton } from '@material-ui/core';
+import MuiAlert from '@material-ui/lab/Alert';
+import { InputAdornment, IconButton, Snackbar } from '@material-ui/core';
+
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -29,18 +30,43 @@ import {
 } from './styles';
 
 export default () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [messageErrorAlert, setMessageErrorAlert] = useState();
-  const history = useHistory();
-  const dispatch = useDispatch();
-
+  const [open, setOpen] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+  // const [state, setState] = useState({
+  //   open: false,
+  //   vertical: 'top',
+  //   horizontal: 'center',
+  // });
+
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
+
+  // const { vertical, horizontal, open } = state;
+
+  // const handleClick = (newState) => () => {
+  //   setState({ open: true, ...newState });
+  // };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    // setState({ ...state, open: false });
+    setOpen(false);
+  };
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
 
   async function handleStoreLogin(e) {
     e.preventDefault();
@@ -145,7 +171,19 @@ export default () => {
         </Form>
         <Collapse in={showAlert}>
           {showErrorAlert && (
-            <Alert severity="error">{messageErrorAlert}</Alert>
+            <Snackbar
+              open={open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            >
+              <Alert
+                onClose={handleClose}
+                severity="error"
+              >
+                {messageErrorAlert}
+              </Alert>
+            </Snackbar>
           )}
         </Collapse>
       </LoginSection>

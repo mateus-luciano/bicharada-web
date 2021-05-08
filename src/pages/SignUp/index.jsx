@@ -2,16 +2,14 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import InputMask from 'react-input-mask';
-// import { Alert } from '@material-ui/lab';
 
-import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
-
 import {
   FormControl,
   Select,
   MenuItem,
   FormHelperText,
+  Snackbar,
 } from '@material-ui/core';
 
 import { Button } from '../../styles/global';
