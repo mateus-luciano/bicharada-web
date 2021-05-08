@@ -33,6 +33,7 @@ import {
 
 export default () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -41,8 +42,11 @@ export default () => {
   const [city, setCity] = useState('');
   const [region, setRegion] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [messageSuccessAlert, setMessageSuccessAlert] = useState();
   const [showErrorAlert, setShowErrorAlert] = useState(false);
-  const dispatch = useDispatch();
+  const [messageErrorAlert, setMessageErrorAlert] = useState();
 
   const handleChange = (event) => {
     setRegion(event.target.value);
@@ -71,6 +75,9 @@ export default () => {
   async function handleStoreSignUp(e) {
     e.preventDefault();
 
+    setShowAlert(false);
+    setShowErrorAlert(false);
+    setShowSuccessAlert(false);
     setLoading(true);
     try {
       const response = await api.post('/users', {
@@ -86,10 +93,34 @@ export default () => {
         // todo login
         handleStoreLogin();
       }
-    } catch (error) {
-      setShowErrorAlert(true);
       setLoading(false);
+      setShowSuccessAlert(true);
+      setShowAlert(true);
+
+      if (response?.data?.message) {
+        setMessageSuccessAlert(response?.data?.message);
+      } else {
+        setMessageSuccessAlert('Usuário cadastrado!');
+      }
+    } catch (error) {
+      setLoading(false);
+      setShowErrorAlert(true);
+      setShowAlert(true);
+
+      if (error?.response?.data?.message) {
+        setMessageErrorAlert(error?.response?.data?.message);
+      } else {
+        setMessageErrorAlert(
+          'Erro ao tentar cadastrar o usuário. Tente novamente mais tarde.'
+        );
+      }
     }
+    setName('');
+    setEmail('');
+    setPassword('');
+    setPhone('');
+    setCity('');
+    setRegion('');
     setLoading(false);
   }
 
