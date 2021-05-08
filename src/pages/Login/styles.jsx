@@ -97,7 +97,7 @@ export const Input = styled(TextField)`
   height: 62px;
 
   input {
-    width: 340px;
+    width: 360px;
     background: #c7c7c7;
     border-radius: 4px;
 

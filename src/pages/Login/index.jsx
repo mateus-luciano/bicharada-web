@@ -3,6 +3,11 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Alert } from '@material-ui/lab';
 
+import { InputAdornment, IconButton } from '@material-ui/core';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 import { Button } from '../../styles/global';
 import Spinner from '../../components/Spinner';
 import LoginImage from '../../assets/images/undraw_Access_account_re_8spm.svg';
@@ -32,6 +37,10 @@ export default () => {
   const [messageErrorAlert, setMessageErrorAlert] = useState();
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
   async function handleStoreLogin(e) {
     e.preventDefault();
@@ -99,14 +108,36 @@ export default () => {
             variant="outlined"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton>
+                    <AccountCircleIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <Input
             id="password"
             label="Senha"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             variant="outlined"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
           />
           <Button type="submit">
             Entrar

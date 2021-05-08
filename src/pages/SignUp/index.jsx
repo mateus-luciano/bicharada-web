@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import InputMask from 'react-input-mask';
-import { Alert } from '@material-ui/lab';
+// import { Alert } from '@material-ui/lab';
+
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
 
 import {
   FormControl,
@@ -50,9 +53,22 @@ export default () => {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [messageErrorAlert, setMessageErrorAlert] = useState();
 
+  const [open, setOpen] = useState(true);
+
   const handleChange = (event) => {
     setRegion(event.target.value);
   };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
 
   async function handleStoreLogin() {
     setLoading(true);
@@ -87,7 +103,7 @@ export default () => {
         email,
         password,
         phone,
-        city,
+        city: 'Test',
         region: 'bf682f61-1e48-46f3-80b8-fba86381ee8c',
       });
 
@@ -239,12 +255,28 @@ export default () => {
           <Button type="submit">
             Salvar
           </Button>
-          <Collapse in={showAlert}>
+          {/* <Collapse in={showAlert}>
             {showErrorAlert && (
               <Alert severity="error">{messageErrorAlert}</Alert>
             )}
             {showSuccessAlert && (
               <Alert severity="success">{messageSuccessAlert}</Alert>
+            )}
+          </Collapse> */}
+          <Collapse in={showAlert}>
+            {showErrorAlert && (
+            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+              <Alert onClose={handleClose} severity="error">
+                {messageErrorAlert}
+              </Alert>
+            </Snackbar>
+            )}
+            {showSuccessAlert && (
+            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+              <Alert onClose={handleClose} severity="success">
+                {messageSuccessAlert}
+              </Alert>
+            </Snackbar>
             )}
           </Collapse>
         </Form>
