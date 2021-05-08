@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import InputMask from 'react-input-mask';
+import { Alert } from '@material-ui/lab';
 
 import {
   FormControl,
@@ -29,6 +30,7 @@ import {
   Form,
   Input,
   SelectContainer,
+  CollapseDiv as Collapse,
 } from './styles';
 
 export default () => {
@@ -111,7 +113,7 @@ export default () => {
         setMessageErrorAlert(error?.response?.data?.message);
       } else {
         setMessageErrorAlert(
-          'Erro ao tentar cadastrar o usuário. Tente novamente mais tarde.'
+          'Erro ao tentar cadastrar o usuário. Tente novamente mais tarde.',
         );
       }
     }
@@ -237,6 +239,14 @@ export default () => {
           <Button type="submit">
             Salvar
           </Button>
+          <Collapse in={showAlert}>
+            {showErrorAlert && (
+              <Alert severity="error">{messageErrorAlert}</Alert>
+            )}
+            {showSuccessAlert && (
+              <Alert severity="success">{messageSuccessAlert}</Alert>
+            )}
+          </Collapse>
         </Form>
       </SignUpSection>
     </SignUpContainer>

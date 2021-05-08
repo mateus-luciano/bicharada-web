@@ -2,11 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import {
   TextField,
-  Button,
-  FormControl,
-  Select,
-  MenuItem,
-  FormHelperText,
+  Collapse,
 } from '@material-ui/core';
 import { Container } from '../../styles/global';
 
@@ -125,4 +121,12 @@ export const SelectContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 10px 0 20px 0;
+`;
+
+export const CollapseDiv = styled(Collapse)`
+  height: 46px;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  border-radius: 3px;
+  margin: 2%;
 `;
