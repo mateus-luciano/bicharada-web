@@ -263,14 +263,24 @@ export default () => {
           </Collapse> */}
           <Collapse in={showAlert}>
             {showErrorAlert && (
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+            <Snackbar
+              open={open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            >
               <Alert onClose={handleClose} severity="error">
                 {messageErrorAlert}
               </Alert>
             </Snackbar>
             )}
             {showSuccessAlert && (
-            <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
+            <Snackbar
+              open={open}
+              autoHideDuration={2000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            >
               <Alert onClose={handleClose} severity="success">
                 {messageSuccessAlert}
               </Alert>
