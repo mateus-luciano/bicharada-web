@@ -164,7 +164,9 @@ export default () => {
             type="email"
             variant="outlined"
             value={email}
+            required
             onChange={(e) => setEmail(e.target.value)}
+            helperText="Use um endereço de e-mail válido"
           />
           <Input
             id="password"
@@ -172,7 +174,9 @@ export default () => {
             type="password"
             variant="outlined"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
+            helperText="Mínimo de 8 dígito"
           />
           <Input
             id="name"
@@ -180,7 +184,9 @@ export default () => {
             type="text"
             variant="outlined"
             value={name}
+            required
             onChange={(e) => setName(e.target.value)}
+            helperText="Use apenas letras"
           />
           <InputMask
             mask="(99) 9 9999-9999"
@@ -192,6 +198,8 @@ export default () => {
                 label="Celular"
                 type="text"
                 variant="outlined"
+                required
+                helperText="Use um número de celular válido"
               />
             )}
           </InputMask>

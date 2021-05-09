@@ -133,7 +133,9 @@ export default () => {
             label="E-mail"
             type="email"
             variant="outlined"
+            required
             value={email}
+            autoComplete="off"
             onChange={(e) => setEmail(e.target.value)}
             InputProps={{
               endAdornment: (
@@ -150,6 +152,7 @@ export default () => {
             label="Senha"
             type={showPassword ? 'text' : 'password'}
             variant="outlined"
+            required
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             InputProps={{

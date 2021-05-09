@@ -36,10 +36,14 @@ export const LoginSection = styled.div`
 `;
 
 export const SignUpSection = styled.div`
-  min-width: 500px;
+  min-width: 520px;
   height: 100%;
   background: #aaa;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
 
   @media(max-width: 960px) {
     display: flex;
@@ -69,7 +73,8 @@ export const Image = styled.img`
 `;
 
 export const Input = styled(TextField)`
-  height: 62px;
+  // height: 62px;
+  margin: 40px 0;
 
   input {
     width: 360px;
@@ -91,12 +96,13 @@ export const Input = styled(TextField)`
 
 export const Form = styled.form`
   width: 440px;
-  height: 460px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   margin: 1em;
+  margin-top: 60px;
 
   @media(max-width: 500px) {
     width: 375px;
@@ -135,7 +141,9 @@ export const LinkUseTerms = styled(IntLink)`
   font-size: 1.2em;
   font-weight: 500;
   color: #00f;
-  margin-top: 20px;
+  margin-bottom: 20px;
+  align-self: flex-start;
+  // margin-top: 10px;
 
   &:hover {
     text-decoration: underline;
