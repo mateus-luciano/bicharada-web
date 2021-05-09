@@ -38,6 +38,10 @@ export const LoginSection = styled.div`
   height: 100%;
   background: #aaa;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
   @media(max-width: 960px) {
     display: flex;
