@@ -130,3 +130,15 @@ export const CollapseDiv = styled(Collapse)`
   border-radius: 3px;
   margin: 2%;
 `;
+
+export const LinkUseTerms = styled(IntLink)`
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #00f;
+  margin-top: 20px;
+
+  &:hover {
+    text-decoration: underline;
+    color: #3737eb;
+  }
+`;

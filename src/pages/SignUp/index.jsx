@@ -32,6 +32,7 @@ import {
   Input,
   SelectContainer,
   CollapseDiv as Collapse,
+  LinkUseTerms,
 } from './styles';
 
 export default () => {
@@ -287,6 +288,9 @@ export default () => {
             </Snackbar>
             )}
           </Collapse>
+          <LinkUseTerms to="/use-terms">
+            Termos de uso
+          </LinkUseTerms>
         </Form>
       </SignUpSection>
     </SignUpContainer>

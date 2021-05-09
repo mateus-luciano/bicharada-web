@@ -27,6 +27,7 @@ import {
   Form,
   Input,
   CollapseDiv as Collapse,
+  LinkForgotPassword,
 } from './styles';
 
 export default () => {
@@ -168,6 +169,9 @@ export default () => {
           <Button type="submit">
             Entrar
           </Button>
+          <LinkForgotPassword to="/forgot-password">
+            Esqueceu sua senha?
+          </LinkForgotPassword>
         </Form>
         <Collapse in={showAlert}>
           {showErrorAlert && (
