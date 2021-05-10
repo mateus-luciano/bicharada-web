@@ -14,7 +14,7 @@ export const SignUpContainer = styled(Container)`
   align-items: center;
   flex-direction: row-reverse;
 
-  @media(max-width: 960px) {
+  @media(max-width: 768px) {
     flex-direction: column;
   } 
 `;
@@ -29,7 +29,7 @@ export const LoginSection = styled.div`
   flex-direction: column;
 
   Button {
-    @media(max-width: 960px) {
+    @media(max-width: 768px) {
       width: 200px;
     } 
   }
@@ -45,10 +45,12 @@ export const SignUpSection = styled.div`
   align-items: center;
   margin: 30px 0;
 
-  @media(max-width: 960px) {
+  @media(max-width: 768px) {
+    width: 340px;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-top: 40px;
   } 
 `;
 
@@ -67,7 +69,7 @@ export const Image = styled.img`
   width: 300px;
   height: 300px;
 
-  @media(max-width: 960px) {
+  @media(max-width: 768px) {
     display: none;
   } 
 `;
@@ -104,12 +106,16 @@ export const Form = styled.form`
   margin: 1em;
   margin-top: 60px;
 
-  @media(max-width: 500px) {
+  @media(max-width: 420px) {
+    width: 375px;
+  } 
+
+  @media(max-width: 768px) {
     width: 375px;
   } 
 
   Button {
-    @media(max-width: 960px) {
+    @media(max-width: 768px) {
       width: 300px;
       margin-top: 2em;
     } 
@@ -117,7 +123,7 @@ export const Form = styled.form`
 
   Input {
     @media(max-width: 500px) {
-      width: 340px;
+      width: 300px;
     } 
   }
 `;
@@ -127,6 +133,10 @@ export const SelectContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 10px 0 20px 0;
+
+  @media(max-width: 768px) {
+    width: 320px;
+  } 
 `;
 
 export const CollapseDiv = styled(Collapse)`
@@ -149,4 +159,9 @@ export const LinkUseTerms = styled(IntLink)`
     text-decoration: underline;
     color: #3737eb;
   }
+
+  @media(max-width: 768px) {
+    align-self: center;
+    margin-top: 20px;
+  } 
 `;
