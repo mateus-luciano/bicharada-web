@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { FaBars, FaTimes } from 'react-icons/fa';
+
 import { IconContext } from 'react-icons/lib';
+
+import { FaBars, FaTimes } from 'react-icons/fa';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
 import { Button } from '../../styles/global';
+
 import {
   Nav,
   NavbarContainer,
@@ -15,29 +20,48 @@ import {
   NavLinks,
   NavItemBtn,
   NavBtnLink,
+  ButtonLogin,
+  ButtonSignup,
+  ContainerNavbtn,
 } from './styles';
 
 import * as userActions from '../../store/modules/user/actions';
 
 export default () => {
   const history = useHistory();
+  const dispatch = useDispatch();
   const userData = useSelector((state) => state?.user);
 
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-  const dispatch = useDispatch();
+  const [mobile, setMobile] = useState(false);
 
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
-  const showButton = () => {
-    if (window.innerHeight <= 960) {
+  // const showButton = () => {
+  //   if (window.innerHeight <= 960) {
+  //     setButton(false);
+  //   } else {
+  //     setButton(true);
+  //   }
+  // };
+  // useEffect(() => {
+  //   showButton();
+  // }, []);
+
+  const isMobile = () => {
+    if (window.innerWidth <= 768) {
+      setMobile(true);
+      console.log('mobile');
       setButton(false);
     } else {
+      setMobile(false);
+      console.log('desktop');
       setButton(true);
     }
   };
   useEffect(() => {
-    showButton();
+    isMobile();
   }, []);
 
   function onLogout() {
@@ -45,7 +69,7 @@ export default () => {
     history.push('/login');
   }
 
-  window.addEventListener('resize', showButton);
+  window.addEventListener('resize', isMobile);
 
   return (
     <IconContext.Provider value={{ color: '#fff' }}>
@@ -95,11 +119,19 @@ export default () => {
               : (
                 <NavItemBtn>
                   { button ? (
-                    <NavBtnLink to="/login">
-                      <Button primary>
-                        ENTRAR
-                      </Button>
-                    </NavBtnLink>
+                    <ContainerNavbtn>
+                      <NavBtnLink to="/login">
+                        <ButtonLogin>
+                          <AccountCircleIcon />
+                          Entrar
+                        </ButtonLogin>
+                      </NavBtnLink>
+                      <NavBtnLink to="/sign-up">
+                        <ButtonSignup>
+                          Criar Conta
+                        </ButtonSignup>
+                      </NavBtnLink>
+                    </ContainerNavbtn>
                   ) : (
                     <NavBtnLink to="/login">
                       <Button fontBig primary>

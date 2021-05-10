@@ -23,6 +23,7 @@ import {
   LoginSection,
   Image,
   Title,
+  TitleForm,
   IntLink,
   Form,
   Input,
@@ -127,7 +128,9 @@ export default () => {
       </SignUpSection>
       <LoginSection>
         <Form onSubmit={handleStoreLogin}>
-          <h2>Login</h2>
+          <TitleForm>
+            Acesse sua conta
+          </TitleForm>
           <Input
             id="email"
             label="E-mail"

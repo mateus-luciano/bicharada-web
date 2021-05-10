@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { GiHollowCat } from 'react-icons/gi';
-import { Container } from '../../styles/global';
+import { Container, Button } from '../../styles/global';
 
 export const Nav = styled.nav`
   background: #0b8653;
@@ -44,7 +44,7 @@ export const NavIcon = styled(GiHollowCat)`
 export const MobileIcon = styled.div`
   display: none;
 
-  @media screen and (max-width: 960px) {
+  @media(max-width: 768px) {
     display: block;
     position: absolute;
     top: 0;
@@ -61,11 +61,12 @@ export const NavMenu = styled.ul`
   list-style: none;
   text-align: center;
 
-  @media screen and (max-width: 960px) {
+  @media(max-width: 768px) {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 90vh;
+    // height: 90vh;
+    height: 160vh;
     position: absolute;
     top: 80px;
     left: ${({ click }) => (click ? 0 : '-100%')};
@@ -84,7 +85,7 @@ export const NavItem = styled.li`
     border-bottom: 2px solid #d36205;
   }
 
-  @media screen and (max-witdh: 960px) {
+  @media(max-width: 768px) {
     width: 100%;
 
     &::hover {
@@ -101,21 +102,28 @@ export const NavLinks = styled(Link)`
   padding: 0.5rem 1rem;
   height: 100%;
 
-  @media screen and (max-witdh: 960px) {
+  @media(max-width: 768px) {
     width: 100%;
     text-align: center;
     padding: 2rem;
-    display: table;
+    // display: table;
+    border-bottom: 2px solid #aaa;
+    flex-direction: column;
+    align-items: flex-start;
 
     &:hover {
       color: #4b59f7;
       transition: all .3s ease;
     }
+
+    Button {
+      display: none;
+    }
   } 
 `;
 
 export const NavItemBtn = styled.li`
-  @media screen and (max-witdh: 960px) {
+  @media(max-width: 768px) {
     width: 100%;
     height: 120px;
     display: flex;
@@ -131,7 +139,38 @@ export const NavBtnLink = styled(Link)`
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  padding: 8px 16px;
+  padding: 8px 4px;
   border: none;
   outline: none;
+`;
+
+export const ButtonLogin = styled(Button)`
+  background: none;
+  transition: .3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    /* filter: brightness(0.95); */
+    background: #055a37;
+    color: #f0f0f7;
+  }
+`;
+
+export const ButtonSignup = styled(Button)`
+  background: #0d3a9c;
+  transition: .3s;
+  padding: 13px 24px;
+
+  &:hover {
+    /* filter: brightness(0.95); */
+    background: #062464;
+    color: #f0f0f7;
+  }
+`;
+
+export const ContainerNavbtn = styled.div`
+  display: flex;
+  flex-direction: row;
 `;

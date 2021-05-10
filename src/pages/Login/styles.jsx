@@ -64,6 +64,12 @@ export const Title = styled.h2`
   margin: 1.2em 0;
 `;
 
+export const TitleForm = styled.h1`
+  font-size: 2em;
+  line-height: 1em;
+  margin-bottom: 25px;
+`;
+
 export const IntLink = styled(Link)`
   text-decoration: none;
   font-weight: 600;
@@ -84,6 +90,7 @@ export const Form = styled.form`
   } 
 
   Button {
+    // margin-top: 20px;
     @media(max-width: 960px) {
       width: 300px;
       margin-top: 2em;
