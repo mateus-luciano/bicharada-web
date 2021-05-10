@@ -156,6 +156,11 @@ export const ButtonLogin = styled(Button)`
     background: #055a37;
     color: #f0f0f7;
   }
+
+  @media(max-width: 768px) {
+    padding: 15px 40px;
+    margin-top: 60px;
+  }
 `;
 
 export const ButtonSignup = styled(Button)`
@@ -168,9 +173,17 @@ export const ButtonSignup = styled(Button)`
     background: #062464;
     color: #f0f0f7;
   }
+
+  @media(max-width: 768px) {
+    padding: 15px 40px;
+  }
 `;
 
 export const ContainerNavbtn = styled.div`
   display: flex;
   flex-direction: row;
+
+  @media(max-width: 768px) {
+    flex-direction: column;
+  }
 `;

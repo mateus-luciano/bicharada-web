@@ -118,7 +118,7 @@ export default () => {
               )
               : (
                 <NavItemBtn>
-                  { button ? (
+                  { mobile ? (
                     <ContainerNavbtn>
                       <NavBtnLink to="/login">
                         <ButtonLogin>
@@ -133,15 +133,22 @@ export default () => {
                       </NavBtnLink>
                     </ContainerNavbtn>
                   ) : (
-                    <NavBtnLink to="/login">
-                      <Button fontBig primary>
-                        ENTRAR
-                      </Button>
-                    </NavBtnLink>
+                    <ContainerNavbtn>
+                      <NavBtnLink to="/login">
+                        <ButtonLogin>
+                          <AccountCircleIcon />
+                          Entrar
+                        </ButtonLogin>
+                      </NavBtnLink>
+                      <NavBtnLink to="/sign-up">
+                        <ButtonSignup>
+                          Criar Conta
+                        </ButtonSignup>
+                      </NavBtnLink>
+                    </ContainerNavbtn>
                   ) }
                 </NavItemBtn>
               ) }
-
           </NavMenu>
         </NavbarContainer>
       </Nav>
