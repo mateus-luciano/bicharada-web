@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import MuiAlert from '@material-ui/lab/Alert';
-import { InputAdornment, IconButton, Snackbar } from '@material-ui/core';
+import { Snackbar } from '@material-ui/core';
 
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
@@ -29,6 +29,9 @@ import {
   Input,
   CollapseDiv as Collapse,
   LinkForgotPassword,
+  InputAdornmentDiv as InputAdornment,
+  IconButtonDiv as IconButton,
+  ContainerInputs,
 } from './styles';
 
 export default () => {
@@ -43,11 +46,24 @@ export default () => {
   const [messageErrorAlert, setMessageErrorAlert] = useState();
   const [open, setOpen] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
+
+  const [mobile, setMobile] = useState(false);
   // const [state, setState] = useState({
   //   open: false,
   //   vertical: 'top',
   //   horizontal: 'center',
   // });
+
+  const isMobile = () => {
+    if (window.innerWidth <= 768) {
+      setMobile(true);
+    } else {
+      setMobile(false);
+    }
+  };
+  useEffect(() => {
+    isMobile();
+  }, []);
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
@@ -84,7 +100,7 @@ export default () => {
       // const tokenApi = response?.data?.token;
       // console.log(tokenApi);
       // localStorage.setItem('token', tokenApi);
-      const isAdmin = response?.data?.user?.admin;
+      // const isAdmin = response?.data?.user?.admin;
       // dispatch(userActions.login(response.data));
       if (response) {
         dispatch(
@@ -112,6 +128,8 @@ export default () => {
     setLoading(false);
   }
 
+  window.addEventListener('resize', isMobile);
+
   return(
     <LoginContainer>
       <Spinner visible={loading} />
@@ -131,7 +149,74 @@ export default () => {
           <TitleForm>
             Acesse sua conta
           </TitleForm>
-          <Input
+          { mobile ? (
+            <ContainerInputs>
+              <Input
+                id="email"
+                label="E-mail"
+                type="email"
+                variant="outlined"
+                required
+                value={email}
+                autoComplete="off"
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <Input
+                id="password"
+                label="Senha"
+                type={showPassword ? 'text' : 'password'}
+                variant="outlined"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </ContainerInputs>
+          ) : (
+            <ContainerInputs>
+              <Input
+                id="email"
+                label="E-mail"
+                type="email"
+                variant="outlined"
+                required
+                value={email}
+                autoComplete="off"
+                onChange={(e) => setEmail(e.target.value)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton>
+                        <AccountCircleIcon />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+              <Input
+                id="password"
+                label="Senha"
+                type={showPassword ? 'text' : 'password'}
+                variant="outlined"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
+              />
+            </ContainerInputs>
+          ) }
+          {/* <Input
             id="email"
             label="E-mail"
             type="email"
@@ -171,8 +256,10 @@ export default () => {
                 </InputAdornment>
               ),
             }}
-          />
-          <Button type="submit">
+          /> */}
+          <Button
+            type="submit"
+          >
             Entrar
           </Button>
           <LinkForgotPassword to="/forgot-password">

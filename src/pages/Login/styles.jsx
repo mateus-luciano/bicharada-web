@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-import { TextField, Collapse } from '@material-ui/core';
+import {
+  TextField,
+  Collapse,
+  InputAdornment,
+  IconButton,
+} from '@material-ui/core';
 import { Container } from '../../styles/global';
 
 export const LoginContainer = styled(Container)`
@@ -12,7 +17,7 @@ export const LoginContainer = styled(Container)`
   align-items: center;
   flex-direction: row;
 
-  @media(max-width: 960px) {
+    @media(max-width: 768px) {
     flex-direction: column-reverse;
   }  
 `;
@@ -27,7 +32,7 @@ export const SignUpSection = styled.div`
   flex-direction: column;
 
   Button {
-    @media(max-width: 960px) {
+    @media(max-width: 768px) {
       width: 200px;
     } 
   }
@@ -43,7 +48,7 @@ export const LoginSection = styled.div`
   align-items: center;
   flex-direction: column;
 
-  @media(max-width: 960px) {
+  @media(max-width: 768px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,7 +59,7 @@ export const Image = styled.img`
   width: 300px;
   height: 300px;
 
-  @media(max-width: 960px) {
+    @media(max-width: 768px) {
     display: none;
   } 
 `;
@@ -91,7 +96,7 @@ export const Form = styled.form`
 
   Button {
     // margin-top: 20px;
-    @media(max-width: 960px) {
+    @media(max-width: 768px) {
       width: 300px;
       margin-top: 2em;
     } 
@@ -99,7 +104,7 @@ export const Form = styled.form`
 
   Input {
     @media(max-width: 420px) {
-      width: 340px;
+      width: 300px;
     } 
   }
 `;
@@ -120,7 +125,35 @@ export const Input = styled(TextField)`
     &:focus {
       background: #c7c7c7;
     }
+
+    @media(max-width: 768px) {
+      width: 300px;
+    } 
   }
+`;
+
+export const ContainerInputs = styled.div`
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+
+  @media(max-width: 768px) {
+    width: 300px;
+  } 
+`;
+
+export const InputAdornmentDiv = styled(InputAdornment)`
+  width: 40px;
+  @media(max-width: 768px) {
+    width: 300px;
+  } 
+`;
+
+export const IconButtonDiv = styled(IconButton)`
+  width: 40px;
+  @media(max-width: 768px) {
+    display: none;
+  } 
 `;
 
 export const HomeHeaderTitle = styled.h1`
@@ -130,7 +163,7 @@ export const HomeHeaderTitle = styled.h1`
 export const CollapseDiv = styled(Collapse)`
   height: 46px;
   width: 100%;
-  padding: 0.375rem 0.75rem;
+  padding: .375em .75em;
   border-radius: 3px;
   margin: 2%;
 `;
