@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import { Link } from 'react-router-dom';
 import { Button } from '../../styles/global';
 import {
   HomeContainer,
@@ -9,6 +8,7 @@ import {
   Text,
   ImageWrapper,
   Image,
+  LinkInt as Link,
 } from './styles';
 
 import image from '../../assets/images/undraw_Access_account_re_8spm.svg';
@@ -26,11 +26,11 @@ export default () => {
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eu ipsum commodo odio venenatis porta non eget dui. Ut nisl enim, rutrum at bibendum efficitur, tempus eget ligula.
         </Text>
-        <Button>
-          <Link to="/adoptions">
+        <Link to="/adoptions">
+          <Button>
             Adotar
-          </Link>
-        </Button>
+          </Button>
+        </Link>
       </TextWrapper>
       <ImageWrapper>
         <Image src={image} />

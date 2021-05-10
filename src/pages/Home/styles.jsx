@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { Container } from '../../styles/global';
 
 export const HomeContainer = styled(Container)`
@@ -21,17 +22,18 @@ export const TextWrapper = styled.div`
 
     Button {
       width: 200px;
-      align-self: center;
       margin-top: 1em;
-
-      Link {
-        text-decoration: none;
-      }
     }
 
   @media(max-width: 768px) {
     margin: 2em 0;
   } 
+`;
+
+export const LinkInt = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  align-self: center;
 `;
 
 export const Heading = styled.h1`
