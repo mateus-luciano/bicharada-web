@@ -7,6 +7,12 @@ export const AdoptionContainer = styled(Container)`
   min-width: 1360px;
   display: flex;
   flex-direction: column;
+
+  @media(max-width: 768px) {
+    min-width: 360px;
+    /* justify-content: center;
+    align-items: center; */
+  } 
 `;
 
 export const AdoptionHeader = styled.header`
@@ -26,6 +32,10 @@ export const TopHeader = styled.div`
 export const HeaderSelect = styled(Select)`
   width: 250px;
   height: 40px;
+
+  @media(max-width: 768px) {
+    min-width: 140px;
+  } 
 `;
 
 export const HeaderLink = styled(Link)`
@@ -42,6 +52,10 @@ export const FormHeader = styled.form`
   flex-direction: row;
   margin-top: 10px;
   margin-left: 20px;
+
+  @media(max-width: 768px) {
+    margin-left: 4px;
+  } 
 `;
 
 export const CheckBoxContainer = styled.div`
@@ -49,17 +63,30 @@ export const CheckBoxContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media(max-width: 768px) {
+    width: 90px;
+  } 
 `;
 
 export const LabelCheckBoxHeader = styled.label`
   cursor: pointer;
   font-size: 1em;
   margin-right: 5px;
+
+  @media(max-width: 768px) {
+    font-size: .9em;
+  } 
 `;
 
 export const CheckBoxHeader = styled.input`
   width: 20px;
   height: 20px;
+
+  @media(max-width: 768px) {
+    width: 16px;
+    height: 16px;
+  } 
 `;
 
 export const AdoptionMain = styled.main`
@@ -68,6 +95,11 @@ export const AdoptionMain = styled.main`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+
+  @media(max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  } 
 `;
 
 export const AdoptionFooter = styled.footer`
