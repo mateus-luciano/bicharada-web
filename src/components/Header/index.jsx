@@ -162,9 +162,11 @@ export default () => {
           <NavMenu onClick={handleClick} click={click}>
             { mobile ? (
               <ContainerLinks>
-                <NavItem>
-                  <NavLinks to="/dashboard">Dashboard</NavLinks>
-                </NavItem>
+                { userData ? (
+                  <NavItem>
+                    <NavLinks to="/dashboard">Dashboard</NavLinks>
+                  </NavItem>
+                ) : ''}
                 <NavItem>
                   <NavLinks to="/adoptions">Adote</NavLinks>
                 </NavItem>
