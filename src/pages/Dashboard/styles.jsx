@@ -5,6 +5,19 @@ export const DashboardContainer = styled(Container)`
   min-width: 1360px;
   display: flex;
   flex-direction: column;
+
+  @media(max-width: 768px) {
+    min-width: 360px;
+  } 
+`;
+
+export const TitleAdoption = styled.h2`
+  font-size: 1.8em;
+  margin-top: 20px;
+
+  @media(max-width: 768px) {
+    margin-top: 30px;
+  }
 `;
 
 export const AdoptionContainer = styled.div`
@@ -13,6 +26,25 @@ export const AdoptionContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+`;
+
+export const HeaderContainer = styled.header`
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const SpanHeader = styled.span`
+  font-size: 1em;
+  text-indent: 1.1em;
+`;
+
+export const TextHeader = styled.p`
+  font-size: 1.1em;
+  font-weight: 600;
+  text-indent: .4em;
 `;
 
 export const EmptyAdoptionsWrapper = styled.div`
@@ -29,5 +61,9 @@ export const EmptyAdoptionsWrapper = styled.div`
     font-size: 1.4em;
     margin-bottom: 10px;
     text-align: center;
+
+    @media(max-width: 768px) {
+      font-size: 1.2em;
+    }
   }
 `;

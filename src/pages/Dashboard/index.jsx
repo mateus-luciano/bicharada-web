@@ -13,7 +13,11 @@ import api from '../../services/api';
 import {
   DashboardContainer,
   AdoptionContainer,
+  HeaderContainer,
+  SpanHeader,
+  TextHeader,
   EmptyAdoptionsWrapper,
+  TitleAdoption,
 } from './styles';
 
 export default () => {
@@ -41,9 +45,17 @@ export default () => {
   return(
     <DashboardContainer>
       <Spinner visible={loading} />
-      <p>Bem vindo</p>
-      { userData.user.name }
-      <h1>Minha adoções</h1>
+      <HeaderContainer>
+        <TextHeader>
+          Bem vindo
+        </TextHeader>
+        <SpanHeader>
+          { userData.user.name }
+        </SpanHeader>
+      </HeaderContainer>
+      <TitleAdoption>
+        Minha adoções
+      </TitleAdoption>
       { !myAdoptions || !myAdoptions.length ? (
         <EmptyAdoptionsWrapper>
           <p>Você ainda não fez adoções</p>
