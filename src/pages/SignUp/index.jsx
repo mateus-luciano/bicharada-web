@@ -82,6 +82,7 @@ export default () => {
           userActions.login(response.data),
         );
         history.push('/dashboard');
+        window.location.reload();
       }
     } catch (error) {
       setLoading(false);
@@ -286,7 +287,7 @@ export default () => {
             {showSuccessAlert && (
             <Snackbar
               open={open}
-              autoHideDuration={2000}
+              autoHideDuration={6000}
               onClose={handleClose}
               anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
             >
