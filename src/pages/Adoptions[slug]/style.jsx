@@ -14,29 +14,49 @@ export const AdoptionWrapper = styled.div`
   height: 460px;
   background: #aaa;
   padding: 20px;
+  border-radius: 14px;
   display: flex;
   justify-content: space-between;
+
+  @media(max-width: 768px) {
+    width: 360px;
+    height: 900px;
+    justify-content: center;
+    flex-direction: column;
+    margin: 40px 0;
+  } 
 `;
 
 export const Image = styled.img`
   width: 340px;
   height: 340px;
-  background: #f00;
+
+  @media(max-width: 768px) {
+    width: 320px;
+    height: 320px;
+  } 
 `;
 
 export const ImageWrapper = styled.div`
   width: 340px;
   height: 100%;
-  background: #f0f;
   display: flex;
   align-items: center;
   flex-direction: column;
+
+  @media(max-width: 768px) {
+    width: 320px;
+    height: 440px;
+  } 
 `;
 
 export const DetailWrapper = styled.div`
   width: 500px;
   height: 100%;
-  background: #00f;
+
+  @media(max-width: 768px) {
+    width: 320px;
+  } 
 `;
 
 export const DetailWrapperHeading = styled.div`
@@ -45,18 +65,20 @@ export const DetailWrapperHeading = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
 `;
+
 export const DetailWrapperMain = styled.div`
   width: 100%;
   height: 260px;
   border: 3px solid #aaa;
   border-radius: 10px;
 `;
+
 export const DetailWrapperFooter = styled.div`
   width: 100%;
   height: 100px;
   background: #fff;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +103,11 @@ export const Span = styled.span`
 `;
 
 export const SpanAddress = styled.span`
+  width: 100%;
   font-size: 1.1em;
   color: #f0f0f7;
   padding-top: 20px;
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid #000;
 `;
