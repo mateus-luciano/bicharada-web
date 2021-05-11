@@ -36,8 +36,8 @@ export const LoginSection = styled.div`
 `;
 
 export const SignUpSection = styled.div`
-  min-width: 520px;
-  height: 100%;
+  min-width: 500px;
+  height: 620px;
   background: #aaa;
   border-radius: 10px;
   display: flex;
@@ -129,7 +129,7 @@ export const Form = styled.form`
 `;
 
 export const SelectContainer = styled.div`
-  width: 360px;
+  width: 380px;
   display: flex;
   justify-content: space-between;
   margin: 10px 0 20px 0;
@@ -152,7 +152,7 @@ export const LinkUseTerms = styled(IntLink)`
   font-weight: 500;
   color: #00f;
   margin-bottom: 20px;
-  align-self: flex-start;
+  // align-self: flex-start;
   // margin-top: 10px;
 
   &:hover {
@@ -164,4 +164,10 @@ export const LinkUseTerms = styled(IntLink)`
     align-self: center;
     margin-top: 20px;
   } 
+`;
+
+export const TitleForm = styled.h1`
+  font-size: 2em;
+  line-height: 1em;
+  margin-bottom: 25px;
 `;

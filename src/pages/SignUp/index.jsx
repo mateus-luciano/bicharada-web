@@ -33,6 +33,7 @@ import {
   SelectContainer,
   CollapseDiv as Collapse,
   LinkUseTerms,
+  TitleForm,
 } from './styles';
 
 export default () => {
@@ -158,7 +159,9 @@ export default () => {
       </LoginSection>
       <SignUpSection>
         <Form onSubmit={handleStoreSignUp}>
-          <h2>Sign up</h2>
+          <TitleForm>
+            Sign up
+          </TitleForm>
           <Input
             id="email"
             label="E-mail"
@@ -206,7 +209,7 @@ export default () => {
           </InputMask>
           <SelectContainer>
             <FormControl
-              style={{ width: 170 }}
+              style={{ width: 180 }}
               variant="outlined"
             >
               <Select
@@ -224,7 +227,7 @@ export default () => {
               <FormHelperText>Selecione a sua região</FormHelperText>
             </FormControl>
             <FormControl
-              style={{ width: 170 }}
+              style={{ width: 180 }}
               variant="outlined"
             >
               { region === 1 ? (
