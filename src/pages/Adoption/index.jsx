@@ -25,23 +25,23 @@ export default () => {
   const [loading, setLoading] = useState(false);
   const [adoptions, setAdoptions] = useState([]);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(2);
+  const [limit, setLimit] = useState(4);
   const [count, setCount] = useState(1);
-  // const options = [
-  //   { value: 'test', label: 'Vale do Paranhana' },
-  //   { value: 'test2', label: 'Vale do Sinos' },
-  // ];
-  const options = [];
+  const options = [
+    { value: 'test', label: 'Vale do Paranhana' },
+    { value: 'test2', label: 'Vale do Sinos' },
+  ];
+  // const options = [];
 
   async function getRegionsData() {
     try {
       const { data } = await api.get('/regions');
-      data.forEach((region) => {
-        options.push({
-          value: region.uid,
-          label: region.name,
-        });
-      });
+      // data.forEach((region) => {
+      //   options.push({
+      //     value: region.uid,
+      //     label: region.name,
+      //   });
+      // });
     } catch (error) {
       // eslint-disable-next-line no-console
       console.log(error);
