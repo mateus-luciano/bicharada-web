@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 
 import AdoptionWrapper from '../../components/AdoptionWrapper';
@@ -20,6 +19,7 @@ import {
   CheckBoxHeader,
   AdoptionMain,
   AdoptionFooter,
+  LinkAdoption as Link,
 } from './styles';
 
 export default () => {

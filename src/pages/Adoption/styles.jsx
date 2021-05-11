@@ -110,3 +110,8 @@ export const AdoptionFooter = styled.footer`
 `;
 
 export const Title = styled.h1``;
+
+export const LinkAdoption = styled(Link)`
+  text-decoration: none;
+  color: #202020;
+`;
