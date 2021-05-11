@@ -8,6 +8,11 @@ export const AdoptionContainer = styled(Container)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media(max-width: 768px) {
+    min-width: 360px;
+    // margin-bottom: 600px;
+  } 
 `;
 
 export const Form = styled.form`

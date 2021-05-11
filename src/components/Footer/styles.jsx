@@ -41,7 +41,7 @@ export const SocialIcons = styled.div`
 `;
 
 export const SocialIconLink = styled.a`
-  color: #341096;
+  color: #055a37;
   font-size: 2em;
   margin: 0 .1em;
   transition: filter .2s;

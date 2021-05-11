@@ -12,6 +12,7 @@ export const HomeContainer = styled(Container)`
 
   @media(max-width: 768px) {
     flex-direction: column;
+    min-height: 100%;
   } 
 `;
 
