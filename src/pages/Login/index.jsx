@@ -107,6 +107,7 @@ export default () => {
           userActions.login(response.data),
         );
         history.push('/dashboard');
+        window.location.reload();
       }
       setLoading(false);
       setShowAlert(true);

@@ -208,3 +208,7 @@ export const ContainerLinks = styled.div`
     align-items: flex-start;
   }
 `;
+
+export const LinksLogout = styled(Link)`
+  text-decoration: none;
+`;

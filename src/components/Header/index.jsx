@@ -1,6 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+
+import {
+  Menu,
+  MenuItem,
+  MenuList,
+  ClickAwayListener,
+  Popper,
+  Grow,
+  Paper,
+} from '@material-ui/core';
 
 import { IconContext } from 'react-icons/lib';
 
@@ -24,6 +34,7 @@ import {
   ButtonSignup,
   ContainerNavbtn,
   ContainerLinks,
+  LinksLogout,
 } from './styles';
 
 import * as userActions from '../../store/modules/user/actions';
@@ -36,9 +47,61 @@ export default () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
   const [mobile, setMobile] = useState(false);
+  const [name, setName] = useState('');
+  // const [anchorEl, setAnchorEl] = useState(null);
 
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
+
+  // const [isOpen, setIsOpen] = useState(false);
   const handleClick = () => setClick(!click);
   const closeMobileMenu = () => setClick(false);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const getFirstName = () => {
+    if (name === '') {
+      // const userName = userData?.user?.name;
+      // const userName = 'Usuário';
+      const [, match] = userData?.user?.name.match(/(\S+) /) || [];
+      setName(match);
+    } else {
+      setName('Usuário');
+    }
+  };
+  useEffect(() => {
+    getFirstName();
+  }, [userData]);
+
+  const prevOpen = useRef(open);
+
+  useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+    prevOpen.current = open;
+  }, [open]);
+
+  // const handleAnchorElClick = (event) => {
+  //   setAnchorEl(event.currentTarget);
+  //   setTimeout(() => {
+  //     setIsOpen(true);
+  //   }, 1000);
+  // };
+
+  // const handleAnchorElClose = () => {
+  //   setAnchorEl(null);
+  // };
+
   // const showButton = () => {
   //   if (window.innerHeight <= 960) {
   //     setButton(false);
@@ -63,10 +126,25 @@ export default () => {
     isMobile();
   }, []);
 
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
+
   function onLogout() {
     dispatch(userActions.logout());
+    // handleAnchorElClose();
     history.push('/login');
   }
+
+  // window.addEventListener('click', () => {
+  //   if (isOpen) {
+  //     handleAnchorElClose();
+  //   }
+  //   setIsOpen(false);
+  // });
 
   window.addEventListener('resize', isMobile);
 
@@ -84,6 +162,9 @@ export default () => {
           <NavMenu onClick={handleClick} click={click}>
             { mobile ? (
               <ContainerLinks>
+                <NavItem>
+                  <NavLinks to="/dashboard">Dashboard</NavLinks>
+                </NavItem>
                 <NavItem>
                   <NavLinks to="/adoptions">Adote</NavLinks>
                 </NavItem>
@@ -106,14 +187,64 @@ export default () => {
               ? (
                 <NavItemBtn>
                   { button ? (
-                    <ButtonLogin
-                      onClick={onLogout}
-                    >
-                      <AccountCircleIcon
-                        style={{ marginRight: 5 }}
-                      />
-                      SAIR
-                    </ButtonLogin>
+                    <NavItemBtn>
+                      <ButtonLogin
+                        ref={anchorRef}
+                        aria-controls={open ? 'menu-list-grow' : undefined}
+                        aria-haspopup="true"
+                        onClick={handleToggle}
+                      >
+                        {/* <Menu
+                          id="simple-menu"
+                          anchorEl={anchorEl}
+                          keepMounted
+                          open={Boolean(anchorEl)}
+                          onClose={handleClose}
+                        >
+                          <MenuItem onClick={handleClose}>
+                            <LinksLogout to="/dashboard">
+                              Dashboard
+                            </LinksLogout>
+                          </MenuItem>
+                          <MenuItem onClick={onLogout}>
+                            Sair
+                          </MenuItem>
+                        </Menu> */}
+                        <AccountCircleIcon
+                          style={{ marginRight: 5 }}
+                        />
+                        { name }
+                      </ButtonLogin>
+                      <Popper
+                        open={open}
+                        anchorEl={anchorRef.current}
+                        role={undefined}
+                        transition
+                        disablePortal
+                      >
+                        {({ TransitionProps, placement }) => (
+                          <Grow
+                            {...TransitionProps}
+                            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                          >
+                            <Paper>
+                              <ClickAwayListener onClickAway={handleClose}>
+                                <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                                  <MenuItem onClick={handleClose}>
+                                    <LinksLogout to="/dashboard">
+                                      Dashboard
+                                    </LinksLogout>
+                                  </MenuItem>
+                                  <MenuItem onClick={onLogout}>
+                                    Sair
+                                  </MenuItem>
+                                </MenuList>
+                              </ClickAwayListener>
+                            </Paper>
+                          </Grow>
+                        )}
+                      </Popper>
+                    </NavItemBtn>
                   ) : (
                     <Button
                       fontBig
