@@ -11,7 +11,7 @@ import {
   LinkInt as Link,
 } from './styles';
 
-import image from '../../assets/images/undraw_Access_account_re_8spm.svg';
+import image from '../../assets/images/undraw_pet_adoption_2qkw (1).svg';
 
 export default () => {
   return(

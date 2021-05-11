@@ -1,12 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+
 import Spinner from '../../components/Spinner';
 import AdoptionWrapper from '../../components/AdoptionWrapper';
 
+import { Button } from '../../styles/global';
+
 import api from '../../services/api';
 
-import { DashboardContainer, AdoptionContainer } from './styles';
+import {
+  DashboardContainer,
+  AdoptionContainer,
+  EmptyAdoptionsWrapper,
+} from './styles';
 
 export default () => {
   const [loading, setLoading] = useState(false);
@@ -36,16 +44,27 @@ export default () => {
       <p>Bem vindo</p>
       { userData.user.name }
       <h1>Minha adoções</h1>
-      <AdoptionContainer>
-        {myAdoptions.map((adoption) => (
-          <AdoptionWrapper
-            image={adoption.title}
-            title={adoption.title}
-            text={adoption.description}
-            city={adoption.address}
-          />
-        ))}
-      </AdoptionContainer>
+      { !myAdoptions || !myAdoptions.length ? (
+        <EmptyAdoptionsWrapper>
+          <p>Você ainda não fez adoções</p>
+          <Link to="/adoptions/add">
+            <Button>
+              Adicionar
+            </Button>
+          </Link>
+        </EmptyAdoptionsWrapper>
+      ) : (
+        <AdoptionContainer>
+          {myAdoptions.map((adoption) => (
+            <AdoptionWrapper
+              image={adoption.title}
+              title={adoption.title}
+              text={adoption.description}
+              city={adoption.address}
+            />
+          ))}
+        </AdoptionContainer>
+      ) }
     </DashboardContainer>
   );
 };

@@ -19,12 +19,24 @@ export const Image = styled.img`
 
 export const Title = styled.h1`
   font-size: 1.4em;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Text = styled.p`
   font-size: 1em;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const TextCity = styled.span`
   font-size: .9em;
+  max-width: 90%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;

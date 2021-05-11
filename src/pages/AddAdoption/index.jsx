@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
+import MuiAlert from '@material-ui/lab/Alert';
+import {
+  Collapse,
+  Snackbar,
+} from '@material-ui/core';
+
 import Spinner from '../../components/Spinner';
 
 import api from '../../services/api';
@@ -22,7 +28,28 @@ export default () => {
   const [type, setType] = useState('');
   const [newAdoption, setNewAdoption] = useState('');
 
+  const [showAlert, setShowAlert] = useState(false);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [messageSuccessAlert, setMessageSuccessAlert] = useState();
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
+  const [messageErrorAlert, setMessageErrorAlert] = useState();
+  const [open, setOpen] = useState(true);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+
   async function handleStoreAdoption() {
+    setShowAlert(false);
+    setShowErrorAlert(false);
+    setShowSuccessAlert(false);
     setLoading(true);
     try {
       const response = await api.post('/adoptions', {
@@ -32,16 +59,40 @@ export default () => {
         type,
         user_uid: userData?.user?.uid,
         region: 'bf682f61-1e48-46f3-80b8-fba86381ee8c',
+      }, {
+        headers: { Authorization: `Bearer ${userData?.token}` },
       });
       setNewAdoption(response?.data);
       setLoading(false);
+      setShowSuccessAlert(true);
+      setShowAlert(true);
+      if (response?.data?.message) {
+        setMessageSuccessAlert(response?.data?.message);
+      } else {
+        setMessageSuccessAlert('Adoção cadastrada!');
+      }
     } catch (error) {
       setLoading(false);
+      setShowErrorAlert(true);
+      setShowAlert(true);
+      if (error?.response?.data?.message) {
+        setMessageErrorAlert(error?.response?.data?.message);
+      } else {
+        setMessageErrorAlert(
+          'Erro ao tentar cadastrar adoção. Tente novamente mais tarde.',
+        );
+      }
     }
+    setTitle('');
+    setDescription('');
+    setAddress('');
+    setType('');
+    setLoading(false);
   }
 
   return(
     <AdoptionContainer>
+      <Spinner visible={loading} />
       <Form>
         <Title>Adicionar uma adoção</Title>
         <Input
@@ -49,6 +100,7 @@ export default () => {
           label="Titulo"
           type="text"
           variant="outlined"
+          autoComplete="off"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
@@ -57,6 +109,7 @@ export default () => {
           label="Descrição"
           type="text"
           variant="outlined"
+          autoComplete="off"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
@@ -65,6 +118,7 @@ export default () => {
           label="Endereço"
           type="text"
           variant="outlined"
+          autoComplete="off"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
@@ -83,6 +137,32 @@ export default () => {
         >
           Salvar
         </ButtonAdd>
+        <Collapse in={showAlert}>
+          {showErrorAlert && (
+            <Snackbar
+              open={open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            >
+              <Alert onClose={handleClose} severity="error">
+                {messageErrorAlert}
+              </Alert>
+            </Snackbar>
+          )}
+          {showSuccessAlert && (
+            <Snackbar
+              open={open}
+              autoHideDuration={2000}
+              onClose={handleClose}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+            >
+              <Alert onClose={handleClose} severity="success">
+                {messageSuccessAlert}
+              </Alert>
+            </Snackbar>
+          )}
+        </Collapse>
       </Form>
     </AdoptionContainer>
   );

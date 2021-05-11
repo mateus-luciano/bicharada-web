@@ -23,6 +23,7 @@ import {
   ButtonLogin,
   ButtonSignup,
   ContainerNavbtn,
+  ContainerLinks,
 } from './styles';
 
 import * as userActions from '../../store/modules/user/actions';
@@ -52,11 +53,9 @@ export default () => {
   const isMobile = () => {
     if (window.innerWidth <= 768) {
       setMobile(true);
-      console.log('mobile');
       setButton(false);
     } else {
       setMobile(false);
-      console.log('desktop');
       setButton(true);
     }
   };
@@ -83,28 +82,38 @@ export default () => {
             { click ? <FaTimes /> : <FaBars />}
           </MobileIcon>
           <NavMenu onClick={handleClick} click={click}>
-            <NavItem>
-              <NavLinks to="/adoptions">Adote</NavLinks>
-            </NavItem>
-            <NavItem>
-              <NavLinks to="/contribute">Contribuir</NavLinks>
-            </NavItem>
-            <NavItem>
-              <NavLinks to="/about">Quem somos</NavLinks>
-            </NavItem>
-            <NavItem>
-              <NavLinks to="/contact">Contato</NavLinks>
-            </NavItem>
+            { mobile ? (
+              <ContainerLinks>
+                <NavItem>
+                  <NavLinks to="/adoptions">Adote</NavLinks>
+                </NavItem>
+                <NavItem>
+                  <NavLinks to="/contribute">Contribuir</NavLinks>
+                </NavItem>
+                <NavItem>
+                  <NavLinks to="/about">Quem somos</NavLinks>
+                </NavItem>
+                <NavItem>
+                  <NavLinks to="/contact">Contato</NavLinks>
+                </NavItem>
+              </ContainerLinks>
+            ) : (
+              <NavItem>
+                <NavLinks to="/adoptions">Adote</NavLinks>
+              </NavItem>
+            ) }
             { userData
               ? (
                 <NavItemBtn>
                   { button ? (
-                    <Button
-                      primary
+                    <ButtonLogin
                       onClick={onLogout}
                     >
+                      <AccountCircleIcon
+                        style={{ marginRight: 5 }}
+                      />
                       SAIR
-                    </Button>
+                    </ButtonLogin>
                   ) : (
                     <Button
                       fontBig
@@ -122,7 +131,9 @@ export default () => {
                     <ContainerNavbtn>
                       <NavBtnLink to="/login">
                         <ButtonLogin>
-                          <AccountCircleIcon />
+                          <AccountCircleIcon
+                            style={{ marginRight: 5 }}
+                          />
                           Entrar
                         </ButtonLogin>
                       </NavBtnLink>
@@ -136,7 +147,9 @@ export default () => {
                     <ContainerNavbtn>
                       <NavBtnLink to="/login">
                         <ButtonLogin>
-                          <AccountCircleIcon />
+                          <AccountCircleIcon
+                            style={{ marginRight: 5 }}
+                          />
                           Entrar
                         </ButtonLogin>
                       </NavBtnLink>

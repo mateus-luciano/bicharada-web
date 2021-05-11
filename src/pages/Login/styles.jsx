@@ -16,6 +16,7 @@ export const LoginContainer = styled(Container)`
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  padding: 40px 0;
 
     @media(max-width: 768px) {
     flex-direction: column-reverse;
@@ -60,8 +61,8 @@ export const Image = styled.img`
   height: 300px;
 
     @media(max-width: 768px) {
-    display: none;
-  } 
+      display: none;
+    } 
 `;
 
 export const Title = styled.h2`

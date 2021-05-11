@@ -73,6 +73,7 @@ export const NavMenu = styled.ul`
     opacity: 1;
     transition: all .5s ease;
     background: #0b8653;
+    overflow: hidden;
   } 
 `;
 
@@ -88,7 +89,7 @@ export const NavItem = styled.li`
   @media(max-width: 768px) {
     width: 100%;
 
-    &::hover {
+    &:hover {
       border: none;
     }
   } 
@@ -102,17 +103,26 @@ export const NavLinks = styled(Link)`
   padding: 0.5rem 1rem;
   height: 100%;
 
+  &:hover {
+    color: #4b59f7;
+    transition: all .3s ease;
+  }
+
   @media(max-width: 768px) {
     width: 100%;
     text-align: center;
     padding: 2rem;
     // display: table;
-    border-bottom: 2px solid #aaa;
+    border-bottom: 1px solid #aaa;
     flex-direction: column;
     align-items: flex-start;
+    color: #000;
+    font-size: 1.2em;
+    font-weight: 600;
 
     &:hover {
-      color: #4b59f7;
+      filter: brightness(9);
+      border-bottom: 1px solid #aaa;
       transition: all .3s ease;
     }
 
@@ -185,5 +195,16 @@ export const ContainerNavbtn = styled.div`
 
   @media(max-width: 768px) {
     flex-direction: column;
+  }
+`;
+
+export const ContainerLinks = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  @media(max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
   }
 `;
