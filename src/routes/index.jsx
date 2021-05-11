@@ -11,6 +11,7 @@ import Adoption from '../pages/Adoption';
 import AddAdoption from '../pages/AddAdoption';
 import Contact from '../pages/Contact';
 import Contribute from '../pages/Contribute';
+import AdoptionSlug from '../pages/Adoptions[slug]';
 
 export default () => (
   <BrowserRouter>
@@ -21,6 +22,7 @@ export default () => (
       <Route path="/dashboard" isPrivate component={Dashboard} />
       <Route path="/about" component={About} />
       <Route path="/adoptions" exact component={Adoption} />
+      <Route path="/adoptions/:slug" exact component={AdoptionSlug} />
       <Route
         path="/adoptions/add"
         exact

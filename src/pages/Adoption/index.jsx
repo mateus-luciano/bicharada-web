@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 
 import AdoptionWrapper from '../../components/AdoptionWrapper';
@@ -66,7 +67,7 @@ export default () => {
 
     try {
       const response = await api.get(`/adoptions?page=${page}&limit=${limit}`);
-      setAdoptions(response?.data.data);
+      setAdoptions(response?.data?.data);
       setCount(response?.data?.total_pages);
       setPage(response?.data?.current_page);
       setLoading(false);
@@ -115,13 +116,15 @@ export default () => {
       </AdoptionHeader>
       <AdoptionMain>
         {adoptions.map((adoption) => (
-          <AdoptionWrapper
-            key={adoption.uid}
-            image={adoption.title}
-            title={adoption.title}
-            text={adoption.description}
-            city={adoption.address}
-          />
+          <Link to={`/adoptions/${adoption.uid}`}>
+            <AdoptionWrapper
+              key={adoption.uid}
+              image={adoption.title}
+              title={adoption.title}
+              text={adoption.description}
+              city={adoption.address}
+            />
+          </Link>
         ))}
       </AdoptionMain>
       <AdoptionFooter>
