@@ -22,13 +22,13 @@ export default () => (
       <Route path="/dashboard" isPrivate component={Dashboard} />
       <Route path="/about" component={About} />
       <Route path="/adoptions" exact component={Adoption} />
-      <Route path="/adoptions/:slug" exact component={AdoptionSlug} />
       <Route
         path="/adoptions/add"
         exact
         isPrivate
         component={AddAdoption}
       />
+      <Route path="/adoptions/:slug" exact component={AdoptionSlug} />
       <Route path="/contact" component={Contact} />
       <Route path="/contribute" component={Contribute} />
       <Route component={NotFound} />
