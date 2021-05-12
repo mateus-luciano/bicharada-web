@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '@material-ui/core';
 import { Container } from '../../styles/global';
 
 export const AdoptionContainer = styled(Container)`
@@ -109,5 +110,13 @@ export const SpanAddress = styled.span`
   padding-top: 20px;
   padding-bottom: 10px;
   text-align: center;
-  border-bottom: 1px solid #000;
+  
+  @media(max-width: 768px) {
+    border-bottom: 1px solid #000;
+  } 
+`;
+
+export const ButtonDelete = styled(Button)`
+  height: 40px;
+  text-decoration: uppercase;
 `;

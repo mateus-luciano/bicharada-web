@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Container, Button } from '../../styles/global';
+import { Button } from '@material-ui/core';
+import { Container } from '../../styles/global';
 
 export const DashboardContainer = styled(Container)`
   min-width: 1360px;
@@ -66,4 +67,18 @@ export const EmptyAdoptionsWrapper = styled.div`
       font-size: 1.2em;
     }
   }
+`;
+
+export const AdminContainer = styled.div`
+  width: 100%;
+  height: 100px;
+  background: #aaa;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+`;
+
+export const ButtonDelete = styled(Button)`
+  background: #f00;
+  text-decoration: uppercase;
 `;

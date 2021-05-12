@@ -1,5 +1,12 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import MuiAlert from '@material-ui/lab/Alert';
+import {
+  Collapse,
+  Snackbar,
+} from '@material-ui/core';
 
 import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
@@ -22,15 +29,86 @@ import {
   Description,
   Span,
   SpanAddress,
+  ButtonDelete,
 } from './style';
 
 export default () => {
   const { slug } = useParams();
+  const history = useHistory();
+  const userData = useSelector((state) => state?.user);
 
   const [loading, setLoading] = useState(false);
   const [adoption, setAdoption] = useState('');
   const [user, setUser] = useState('');
+  const [admin, setAdmin] = useState(false);
   const [adoptionNotFound, setAdoptionNotFound] = useState('');
+  const [open, setOpen] = useState(true);
+  const [showAlert, setShowAlert] = useState(false);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [messageSuccessAlert, setMessageSuccessAlert] = useState();
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
+  const [messageErrorAlert, setMessageErrorAlert] = useState();
+
+  const UserIsAdmin = () => {
+    setAdmin(false);
+    const isAdmin = userData?.user?.admin;
+    if (isAdmin) {
+      setAdmin(true);
+    } else {
+      setAdmin(false);
+    }
+  };
+  useEffect(() => {
+    UserIsAdmin();
+  }, []);
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+
+  function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+  }
+
+  async function handleDeleteAdoption() {
+    setShowAlert(false);
+    setShowErrorAlert(false);
+    setShowSuccessAlert(false);
+    setLoading(true);
+    try {
+      const response = await api.delete(`adoptions/${slug}`, {
+        headers: { Authorization: `Bearer ${userData?.token}` },
+      });
+      if (response?.status === 204) {
+        setShowSuccessAlert(true);
+        setShowAlert(true);
+        setTimeout(() => {
+          history.push('/adoptions');
+        }, 3000);
+      }
+      setLoading(false);
+      if (response?.data?.message) {
+        setMessageSuccessAlert(response?.data?.message);
+      } else {
+        setMessageSuccessAlert('Apagado com sucesso!');
+      }
+    } catch (error) {
+      setLoading(false);
+      setShowErrorAlert(true);
+      setShowAlert(true);
+      if (error?.response?.data?.message) {
+        setMessageErrorAlert(error?.response?.data?.message);
+      } else {
+        setMessageErrorAlert(
+          'Erro ao tentar apagar a adoção. Tente novamente mais tarde.',
+        );
+      }
+    }
+    setLoading(false);
+  }
 
   async function getUserData(uid) {
     setLoading(true);
@@ -85,6 +163,15 @@ export default () => {
             <SpanAddress>
               {adoption.address}
             </SpanAddress>
+            { admin ? (
+              <ButtonDelete
+                variant="contained"
+                color="secondary"
+                onClick={handleDeleteAdoption}
+              >
+                Apagar
+              </ButtonDelete>
+            ) : '' }
           </ImageWrapper>
           <DetailWrapper>
             <DetailWrapperHeading>
@@ -109,6 +196,32 @@ export default () => {
           </DetailWrapper>
         </AdoptionWrapper>
       ) : adoptionNotFound }
+      <Collapse in={showAlert}>
+        {showErrorAlert && (
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        >
+          <Alert onClose={handleClose} severity="error">
+            {messageErrorAlert}
+          </Alert>
+        </Snackbar>
+        )}
+        {showSuccessAlert && (
+        <Snackbar
+          open={open}
+          autoHideDuration={6000}
+          onClose={handleClose}
+          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        >
+          <Alert onClose={handleClose} severity="success">
+            {messageSuccessAlert}
+          </Alert>
+        </Snackbar>
+        )}
+      </Collapse>
     </AdoptionContainer>
   );
 };
