@@ -82,10 +82,10 @@ export default () => {
         <AdoptionContainer>
           {myAdoptions.map((adoption) => (
             <AdoptionWrapper
-              image={adoption.title}
-              title={adoption.title}
-              text={adoption.description}
-              city={adoption.address}
+              image={adoption?.attachments[0]?.url}
+              title={adoption?.title}
+              text={adoption?.description}
+              city={adoption?.address}
             />
           ))}
         </AdoptionContainer>

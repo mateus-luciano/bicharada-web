@@ -6,6 +6,8 @@ import Spinner from '../../components/Spinner';
 
 import api from '../../services/api';
 
+import notFoundSvg from '../../assets/images/undraw_not_found_60pq.svg';
+
 import {
   AdoptionContainer,
   AdoptionHeader,
@@ -98,7 +100,7 @@ export default () => {
         <FormHeader>
           <CheckBoxContainer>
             <LabelCheckBoxHeader for="all">Todos</LabelCheckBoxHeader>
-            <CheckBoxHeader type="checkbox" id="all" />
+            <CheckBoxHeader type="checkbox" defaultChecked id="all" />
           </CheckBoxContainer>
           <CheckBoxContainer>
             <LabelCheckBoxHeader for="dog">Cachorros</LabelCheckBoxHeader>
@@ -117,13 +119,23 @@ export default () => {
       <AdoptionMain>
         {adoptions.map((adoption) => (
           <Link to={`/adoptions/${adoption.uid}`}>
-            <AdoptionWrapper
-              key={adoption.uid}
-              image={adoption.title}
-              title={adoption.title}
-              text={adoption.description}
-              city={adoption.address}
-            />
+            {!adoption.attachments.length ? (
+              <AdoptionWrapper
+                key={adoption.uid}
+                image={notFoundSvg}
+                title={adoption.title}
+                text={adoption.description}
+                city={adoption.address}
+              />
+            ) : (
+              <AdoptionWrapper
+                key={adoption.uid}
+                image={adoption.attachments[0].url}
+                title={adoption.title}
+                text={adoption.description}
+                city={adoption.address}
+              />
+            )}
           </Link>
         ))}
       </AdoptionMain>

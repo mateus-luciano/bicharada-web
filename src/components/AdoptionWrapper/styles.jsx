@@ -15,6 +15,9 @@ export const Image = styled.img`
   width: 220px;
   height: 220px;
   margin: 0 auto;
+  overflow: hidden;
+  display: block;
+  object-fit: cover;
 `;
 
 export const Title = styled.h1`

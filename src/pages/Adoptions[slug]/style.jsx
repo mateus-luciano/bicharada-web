@@ -34,6 +34,7 @@ export const Image = styled.img`
   height: 255px;
   overflow: hidden;
   display: block;
+  object-fit: contain;
 
   @media(max-width: 768px) {
     width: 320px;

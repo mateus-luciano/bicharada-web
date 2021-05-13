@@ -164,7 +164,6 @@ export default () => {
       const response = await api.get(`/adoptions/${slug}`);
       // setImages(response?.data?.attachments);
       await getUserData(response?.data?.data?.user_uid);
-      await setImages(response?.data?.attachments);
       // if (!images.length) {
       //   await response?.data?.attachments.forEach((file) => {
       //     // setImages({ label: response?.data?.data?.title, imgPath: file.url });
@@ -173,7 +172,17 @@ export default () => {
       //   });
       // }
       // setImages(response?.data?.attachments);
-      setAdoption(response?.data?.data);
+      setAdoption(response?.data);
+      console.log(response.data);
+      // setImages(response?.data?.attachments);
+      setImages(
+        <ImageWrapper>
+          {response?.data?.attachments.map((item) => {
+            // <Image src={item.url} alt={adoption.title} />;
+            <Image key={item.uid} src={item.url} alt={adoption.title} />;
+          })}
+        </ImageWrapper>,
+      );
       setLoading(false);
     } catch (error) {
       if (error?.response?.status === 404) {
@@ -203,20 +212,20 @@ export default () => {
   // }));
   return(
     <AdoptionContainer>
+      {/* <ImageWrapper>
+        {images.map((item) => {
+          // <Image src={item.url} alt={adoption.title} />;
+          <Image key={item.uid} src={item.url} alt={adoption.title} />;
+        })}
+      </ImageWrapper> */}
       <Spinner visible={loading} />
       { adoption ? (
         <AdoptionWrapper>
           <ImageWrapper>
-            { !images.length ? (
-              <h1>Sem foto</h1>
-            ) : (
-              <ImageWrapper>
-                {images.map((item) => {
-                  // <Image src={item.url} alt={adoption.title} />;
-                  <h1>{item.length}</h1>;
-                })}
-              </ImageWrapper>
-            )}
+            {/* {adoption.attachments.map((file) => {
+              <img src={file.url} alt={adoption.data.title} />;
+            })} */}
+            <Image src={adoption?.attachments[0]?.url} alt={adoption?.data?.title} />
             {/* <AutoPlaySwipeableViews
               axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
               index={activeStep}
@@ -272,7 +281,7 @@ export default () => {
             </AwesomeSlider> */}
             {/* <Carousel images={imagestest} /> */}
             <SpanAddress>
-              {adoption.address}
+              {adoption?.data?.address}
             </SpanAddress>
             { admin ? (
               <ButtonDelete
@@ -287,21 +296,21 @@ export default () => {
           <DetailWrapper>
             <DetailWrapperHeading>
               <Title>
-                {adoption.title}
+                {adoption?.data?.title}
               </Title>
             </DetailWrapperHeading>
             <DetailWrapperMain>
               <Description>
-                {adoption.description}
+                {adoption?.data?.description}
               </Description>
             </DetailWrapperMain>
             <DetailWrapperFooter>
               <Span>
-                {user.name}
+                {user?.name}
               </Span>
               <Span>
                 <WhatsAppIcon />
-                {user.phone}
+                {user?.phone}
               </Span>
             </DetailWrapperFooter>
           </DetailWrapper>
