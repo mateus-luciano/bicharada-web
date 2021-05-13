@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Button } from '@material-ui/core';
+import { Button, MobileStepper } from '@material-ui/core';
 import { Container } from '../../styles/global';
 
 export const AdoptionContainer = styled(Container)`
@@ -29,8 +29,11 @@ export const AdoptionWrapper = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 340px;
-  height: 340px;
+  max-width: 400px;
+  width: 100%;
+  height: 255px;
+  overflow: hidden;
+  display: block;
 
   @media(max-width: 768px) {
     width: 320px;
@@ -119,4 +122,9 @@ export const SpanAddress = styled.span`
 export const ButtonDelete = styled(Button)`
   height: 40px;
   text-decoration: uppercase;
+`;
+
+export const MobileStepperDiv = styled(MobileStepper)`
+  max-width: 400px;
+  background: #000;
 `;

@@ -1,13 +1,7 @@
 /* eslint-disable array-callback-return */
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
-import AwesomeSlider from 'react-awesome-slider';
-import 'react-awesome-slider/dist/styles.css';
-
-import Carousel from 'react-gallery-carousel';
-import 'react-gallery-carousel/dist/index.css';
 
 import MuiAlert from '@material-ui/lab/Alert';
 import {
@@ -164,15 +158,18 @@ export default () => {
       const response = await api.get(`/adoptions/${slug}`);
       // setImages(response?.data?.attachments);
       await getUserData(response?.data?.data?.user_uid);
-      await setImages(response?.data?.attachments);
       // if (!images.length) {
-      //   await response?.data?.attachments.forEach((file) => {
-      //     // setImages({ label: response?.data?.data?.title, imgPath: file.url });
-      //     // setImages(file.url);
+      //   console.log('aqui');
+      //   response?.data?.attachments.forEach((file) => {
+      //     setImages.push({ label: response?.data?.data?.title, imgPath: file.url });
       //     // setImages({ label: response?.data?.data?.title, imgPath: file.url });
       //   });
+      // } else {
+      //   setImages({
+      //     label: 'Sem imagem',
+      //     imgPath: 'https://backend-bicharada.herokuapp.com/attachments/f72b15acb493a8ccd1649c539446f30e.jpg',
+      //   });
       // }
-      // setImages(response?.data?.attachments);
       setAdoption(response?.data?.data);
       setLoading(false);
     } catch (error) {
@@ -197,27 +194,16 @@ export default () => {
   useEffect(() => {
     findAdoption();
   }, []);
-
-  // const imagestest = [images.url].map((image) => ({
-  //   src: image,
-  // }));
   return(
     <AdoptionContainer>
       <Spinner visible={loading} />
       { adoption ? (
         <AdoptionWrapper>
           <ImageWrapper>
-            { !images.length ? (
-              <h1>Sem foto</h1>
-            ) : (
-              <ImageWrapper>
-                {images.map((item) => {
-                  // <Image src={item.url} alt={adoption.title} />;
-                  <h1>{item.length}</h1>;
-                })}
-              </ImageWrapper>
-            )}
-            {/* <AutoPlaySwipeableViews
+            {/* {images.map((image) => {
+              <Image src={image.url} alt={adoption.title} />;
+            })} */}
+            <AutoPlaySwipeableViews
               axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
               index={activeStep}
               onChangeIndex={handleStepChange}
@@ -266,11 +252,7 @@ export default () => {
                   Back
                 </Button>
               )}
-            /> */}
-            {/* <AwesomeSlider>
-              <div data-src="https://backend-bicharada.herokuapp.com/attachments/f72b15acb493a8ccd1649c539446f30e.jpg" />
-            </AwesomeSlider> */}
-            {/* <Carousel images={imagestest} /> */}
+            />
             <SpanAddress>
               {adoption.address}
             </SpanAddress>
