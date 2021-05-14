@@ -62,7 +62,7 @@ export default () => {
   const [messageSuccessAlert, setMessageSuccessAlert] = useState();
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [messageErrorAlert, setMessageErrorAlert] = useState();
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState('');
 
   const theme = useTheme();
   const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
@@ -159,7 +159,7 @@ export default () => {
   async function findAdoption() {
     setLoading(true);
     setAdoption('');
-    setImages([]);
+    // setImages([]);
     try {
       const response = await api.get(`/adoptions/${slug}`);
       // setImages(response?.data?.attachments);
@@ -174,14 +174,15 @@ export default () => {
       // setImages(response?.data?.attachments);
       setAdoption(response?.data);
       // setImages(response?.data?.attachments);
-      setImages(
-        <ImageWrapper>
-          {response?.data?.attachments.map((item) => {
-            // <Image src={item.url} alt={adoption.title} />;
-            <Image key={item.uid} src={item.url} alt={adoption.title} />;
-          })}
-        </ImageWrapper>,
-      );
+      // setImages(
+      //   <ImageWrapper>
+      //     {response?.data?.attachments.map((item) => {
+      //       // <Image src={item.url} alt={adoption.title} />;
+      //       <Image key={item.uid} src={item.url} alt={adoption.title} />;
+      //     })}
+      //   </ImageWrapper>,
+      // );
+      setImages(response?.data?.attachments);
       setLoading(false);
     } catch (error) {
       if (error?.response?.status === 404) {
@@ -225,6 +226,9 @@ export default () => {
               <img src={file.url} alt={adoption.data.title} />;
             })} */}
             <Image src={adoption?.attachments[0]?.url} alt={adoption?.data?.title} />
+            {/* {adoption?.attachments.map((image) => {
+              <Image src={image.url} alt={adoption?.data?.title} />;
+            })} */}
             {/* <AutoPlaySwipeableViews
               axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
               index={activeStep}

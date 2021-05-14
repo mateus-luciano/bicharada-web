@@ -33,7 +33,6 @@ export default () => {
   const [checkedAll, setCheckedAll] = useState(false);
   const [checkedCats, setCheckedCats] = useState(false);
   const [checkedDogs, setCheckedDogs] = useState(false);
-  const [filterDefault, setFilterDefault] = useState('all');
   const options = [
     { value: 'test', label: 'Vale do Paranhana' },
     { value: 'test2', label: 'Vale do Sinos' },
@@ -60,7 +59,7 @@ export default () => {
     try {
       setPage(value);
       setAdoptions([]);
-      const response = await api.get(`/adoptions?page=${value}&limit=${limit}&filter=${filterDefault}`);
+      const response = await api.get(`/adoptions?page=${value}&limit=${limit}`);
       setAdoptions(response?.data?.data);
     } catch (error) {
       setLoading(false);
@@ -73,57 +72,45 @@ export default () => {
     setCount(1);
     setPage(1);
     setAdoptions([]);
-    setCheckedAll(false);
-    setCheckedCats(false);
-    setCheckedDogs(false);
-    setFilterDefault('all');
     try {
       const response = await api.get(`/adoptions?page=${page}&limit=${limit}&filter=${filter}`);
       setAdoptions(response?.data?.data);
       setCount(response?.data?.total_pages);
       setPage(response?.data?.current_page);
+      setCheckedAll(false);
       // setCheckedCats((current) => !current);
       if (filter === 'Gato') {
         setCheckedCats(true);
         setCheckedDogs(false);
-        setFilterDefault('Gato');
       } else if (filter === 'Cachorro') {
         setCheckedDogs(true);
         setCheckedCats(false);
-        setFilterDefault('Cachorro');
-      } else {
-        setCheckedAll(true);
-        setFilterDefault('all');
       }
       setLoading(false);
     } catch (error) {
       setLoading(false);
     }
   }
+
+  async function getAdoptionsData() {
+    setLoading(true);
+    try {
+      const response = await api.get(`/adoptions?page=${page}&limit=${limit}`);
+      setAdoptions(response?.data?.data);
+      setCount(response?.data?.total_pages);
+      setPage(response?.data?.current_page);
+      setCheckedAll(true);
+      setCheckedCats(false);
+      setCheckedDogs(false);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  }
   useEffect(() => {
-    handleFilterAdoptions('all');
+    getAdoptionsData();
     getRegionsData();
   }, []);
-
-  // async function getAdoptionsData() {
-  //   setLoading(true);
-  //   try {
-  //     const response = await api.get(`/adoptions?page=${page}&limit=${limit}`);
-  //     setAdoptions(response?.data?.data);
-  //     setCount(response?.data?.total_pages);
-  //     setPage(response?.data?.current_page);
-  //     setCheckedAll(true);
-  //     setCheckedCats(false);
-  //     setCheckedDogs(false);
-  //     setLoading(false);
-  //   } catch (error) {
-  //     setLoading(false);
-  //   }
-  // }
-  // useEffect(() => {
-  //   getAdoptionsData();
-  //   getRegionsData();
-  // }, []);
 
   return(
     <AdoptionContainer>
@@ -151,9 +138,7 @@ export default () => {
               type="checkbox"
               checked={checkedAll}
               id="all"
-              onClick={() => {
-                handleFilterAdoptions('all');
-              }}
+              onClick={getAdoptionsData}
             />
           </CheckBoxContainer>
           <CheckBoxContainer>

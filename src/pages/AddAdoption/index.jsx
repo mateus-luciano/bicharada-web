@@ -5,6 +5,10 @@ import MuiAlert from '@material-ui/lab/Alert';
 import {
   Collapse,
   Snackbar,
+  FormControl,
+  Select,
+  MenuItem,
+  FormHelperText,
 } from '@material-ui/core';
 
 import Spinner from '../../components/Spinner';
@@ -34,6 +38,10 @@ export default () => {
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [messageErrorAlert, setMessageErrorAlert] = useState();
   const [open, setOpen] = useState(true);
+
+  const handleChange = (event) => {
+    setType(event.target.value);
+  };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -122,14 +130,32 @@ export default () => {
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />
-        <Input
+        {/* <Input
           id="type"
           label="Tipo"
           type="text"
           variant="outlined"
           value={type}
           onChange={(e) => setType(e.target.value)}
-        />
+        /> */}
+        <FormControl
+          style={{ width: 300 }}
+          variant="outlined"
+        >
+          <Select
+            value={type}
+            onChange={handleChange}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Without label' }}
+          >
+            <MenuItem value="" disabled>
+              Tipo
+            </MenuItem>
+            <MenuItem value="Gato">Gatos</MenuItem>
+            <MenuItem value="Cachorro">Cachorros</MenuItem>
+          </Select>
+          <FormHelperText>Qual animal você está doando?</FormHelperText>
+        </FormControl>
         <ButtonAdd
           color="primary"
           variant="contained"
