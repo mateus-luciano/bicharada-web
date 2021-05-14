@@ -181,7 +181,6 @@ export default () => {
                 variant="outlined"
                 required
                 value={email}
-                autoComplete="off"
                 onChange={(e) => setEmail(e.target.value)}
                 InputProps={{
                   endAdornment: (

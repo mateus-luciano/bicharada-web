@@ -111,7 +111,7 @@ export const Form = styled.form`
 `;
 
 export const Input = styled(TextField)`
-  height: 62px;
+  height: 70px;
 
   input {
     width: 360px;
@@ -130,6 +130,9 @@ export const Input = styled(TextField)`
     @media(max-width: 768px) {
       width: 300px;
     } 
+  }
+  label {
+    color: #0f0f0f;
   }
 `;
 

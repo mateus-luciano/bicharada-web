@@ -52,6 +52,8 @@ export default () => {
   const [messageSuccessAlert, setMessageSuccessAlert] = useState();
   const [showErrorAlert, setShowErrorAlert] = useState(false);
   const [messageErrorAlert, setMessageErrorAlert] = useState();
+  const [passwordError, setPasswordError] = useState(false);
+  const [signUpError, setSignUpError] = useState(false);
 
   const [open, setOpen] = useState(true);
 
@@ -97,54 +99,62 @@ export default () => {
 
   async function handleStoreSignUp(e) {
     e.preventDefault();
-
-    setShowAlert(false);
-    setShowErrorAlert(false);
-    setShowSuccessAlert(false);
-    setLoading(true);
-    try {
-      const response = await api.post('/users', {
-        name,
-        email,
-        password,
-        phone,
-        city,
-        region,
-      });
-
-      if (response.status === 201) {
-        // todo login
-        handleStoreLogin();
-      }
-      setLoading(false);
-      setShowSuccessAlert(true);
+    if (password.length < 8) {
+      setPasswordError(true);
       setShowAlert(true);
-
-      if (response?.data?.message) {
-        setMessageSuccessAlert(response?.data?.message);
-      } else {
-        setMessageSuccessAlert('Usuário cadastrado!');
-      }
-    } catch (error) {
-      setLoading(false);
       setShowErrorAlert(true);
-      setShowAlert(true);
+      setMessageErrorAlert('Erro, Senha deve conter no mínimo 8 caracteres');
+      setLoading(false);
+    } else {
+      setShowAlert(false);
+      setShowErrorAlert(false);
+      setShowSuccessAlert(false);
+      setLoading(true);
 
-      if (error?.response?.data?.message) {
-        setMessageErrorAlert(error?.response?.data?.message);
-      } else {
-        setMessageErrorAlert(
-          'Erro ao tentar cadastrar o usuário. Tente novamente mais tarde.',
-        );
+      try {
+        const response = await api.post('/users', {
+          name,
+          email,
+          password,
+          phone,
+          city,
+          region,
+        });
+
+        if (response.status === 201) {
+        // todo login
+          handleStoreLogin();
+        }
+        setLoading(false);
+        setShowSuccessAlert(true);
+        setShowAlert(true);
+
+        if (response?.data?.message) {
+          setMessageSuccessAlert(response?.data?.message);
+        } else {
+          setMessageSuccessAlert('Usuário cadastrado!');
+        }
+      } catch (error) {
+        setLoading(false);
+        setShowErrorAlert(true);
+        setShowAlert(true);
+
+        if (error?.response?.data?.message) {
+          setMessageErrorAlert(error?.response?.data?.message);
+        } else {
+          setMessageErrorAlert(
+            'Erro ao tentar cadastrar o usuário. Tente novamente mais tarde.',
+          );
+        }
       }
+      setName('');
+      setEmail('');
+      setPassword('');
+      setPhone('');
+      setCity('');
+      setRegion('');
+      setLoading(false);
     }
-    setName('');
-    setEmail('');
-    setPassword('');
-    setPhone('');
-    setCity('');
-    setRegion('');
-    setLoading(false);
   }
 
   return(
@@ -176,16 +186,30 @@ export default () => {
             onChange={(e) => setEmail(e.target.value)}
             helperText="Use um endereço de e-mail válido"
           />
-          <Input
-            id="password"
-            label="Senha"
-            type="password"
-            variant="outlined"
-            value={password}
-            required
-            onChange={(e) => setPassword(e.target.value)}
-            helperText="Mínimo de 8 dígito"
-          />
+          { passwordError ? (
+            <Input
+              error
+              id="password"
+              label="Senha"
+              type="password"
+              variant="outlined"
+              value={password}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+              helperText="Mínimo de 8 dígito"
+            />
+          ) : (
+            <Input
+              id="password"
+              label="Senha"
+              type="password"
+              variant="outlined"
+              value={password}
+              required
+              onChange={(e) => setPassword(e.target.value)}
+              helperText="Mínimo de 8 dígito"
+            />
+          )}
           <Input
             id="name"
             label="Nome"
@@ -218,8 +242,10 @@ export default () => {
             >
               <Select
                 value={region}
+                style={{ background: '#c7c7c7' }}
                 onChange={handleChangeRegion}
                 displayEmpty
+                required
                 inputProps={{ 'aria-label': 'Without label' }}
               >
                 <MenuItem value="" disabled>
@@ -237,8 +263,10 @@ export default () => {
               { region === 'bf682f61-1e48-46f3-80b8-fba86381ee8c' ? (
                 <Select
                   value={city}
+                  style={{ background: '#c7c7c7' }}
                   onChange={handleChangeCity}
                   displayEmpty
+                  required
                   inputProps={{ 'aria-label': 'Without label' }}
                 >
                   <MenuItem value="" disabled>
@@ -251,8 +279,10 @@ export default () => {
               ) : (
                 <Select
                   value={city}
+                  style={{ background: '#c7c7c7' }}
                   onChange={handleChangeCity}
                   displayEmpty
+                  required
                   inputProps={{ 'aria-label': 'Without label' }}
                 >
                   <MenuItem value="" disabled>

@@ -75,12 +75,11 @@ export const Image = styled.img`
 `;
 
 export const Input = styled(TextField)`
-  // height: 62px;
-  margin: 40px 0;
+  height: 100px;
+  // margin: 40px 0;
 
   input {
     width: 360px;
-    // height: 12px;
     background: #c7c7c7;
     border-radius: 4px;
 
@@ -94,11 +93,15 @@ export const Input = styled(TextField)`
       // border-color: #000;
     }
   }
+
+  label {
+    color: #0f0f0f;
+  }
 `;
 
 export const Form = styled.form`
   width: 440px;
-  height: 500px;
+  height: 610px;
   display: flex;
   justify-content: center;
   align-items: center;
