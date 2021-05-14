@@ -55,8 +55,12 @@ export default () => {
 
   const [open, setOpen] = useState(true);
 
-  const handleChange = (event) => {
+  const handleChangeRegion = (event) => {
     setRegion(event.target.value);
+  };
+
+  const handleChangeCity = (event) => {
+    setCity(event.target.value);
   };
 
   const handleClose = (event, reason) => {
@@ -104,8 +108,8 @@ export default () => {
         email,
         password,
         phone,
-        city: 'Test',
-        region: 'bf682f61-1e48-46f3-80b8-fba86381ee8c',
+        city,
+        region,
       });
 
       if (response.status === 201) {
@@ -214,15 +218,15 @@ export default () => {
             >
               <Select
                 value={region}
-                onChange={handleChange}
+                onChange={handleChangeRegion}
                 displayEmpty
                 inputProps={{ 'aria-label': 'Without label' }}
               >
                 <MenuItem value="" disabled>
                   Região
                 </MenuItem>
-                <MenuItem value={1}>Vale do Paranhana</MenuItem>
-                <MenuItem value={2}>Vale do Sinos</MenuItem>
+                <MenuItem value="bf682f61-1e48-46f3-80b8-fba86381ee8c">Vale do Paranhana</MenuItem>
+                <MenuItem value="06a3f7a3-60b5-45f6-bbb7-939b39a7412c">Vale do Sinos</MenuItem>
               </Select>
               <FormHelperText>Selecione a sua região</FormHelperText>
             </FormControl>
@@ -230,10 +234,10 @@ export default () => {
               style={{ width: 180 }}
               variant="outlined"
             >
-              { region === 1 ? (
+              { region === 'bf682f61-1e48-46f3-80b8-fba86381ee8c' ? (
                 <Select
                   value={city}
-                  onChange={handleChange}
+                  onChange={handleChangeCity}
                   displayEmpty
                   inputProps={{ 'aria-label': 'Without label' }}
                 >
@@ -247,7 +251,7 @@ export default () => {
               ) : (
                 <Select
                   value={city}
-                  onChange={handleChange}
+                  onChange={handleChangeCity}
                   displayEmpty
                   inputProps={{ 'aria-label': 'Without label' }}
                 >
@@ -257,13 +261,16 @@ export default () => {
                   <MenuItem value="Sapiranga">Sapiranga</MenuItem>
                   <MenuItem value="Campo Bom">Campo Bom</MenuItem>
                   <MenuItem value="Novo Hamburgo">Novo Hamburgo</MenuItem>
+                  <MenuItem value="São Leopoldo">São Leopoldo</MenuItem>
                   <MenuItem value="Araricá">Araricá</MenuItem>
                 </Select>
               ) }
               <FormHelperText>Selecione a sua cidade</FormHelperText>
             </FormControl>
           </SelectContainer>
-          <Button type="submit">
+          <Button
+            type="submit"
+          >
             Salvar
           </Button>
           {/* <Collapse in={showAlert}>
