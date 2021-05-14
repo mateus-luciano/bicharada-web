@@ -173,7 +173,6 @@ export default () => {
       // }
       // setImages(response?.data?.attachments);
       setAdoption(response?.data);
-      console.log(response.data);
       // setImages(response?.data?.attachments);
       setImages(
         <ImageWrapper>

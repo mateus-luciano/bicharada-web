@@ -30,6 +30,9 @@ export default () => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(4);
   const [count, setCount] = useState(1);
+  const [checkedAll, setCheckedAll] = useState(false);
+  const [checkedCats, setCheckedCats] = useState(false);
+  const [checkedDogs, setCheckedDogs] = useState(false);
   const options = [
     { value: 'test', label: 'Vale do Paranhana' },
     { value: 'test2', label: 'Vale do Sinos' },
@@ -57,21 +60,44 @@ export default () => {
       setPage(value);
       setAdoptions([]);
       const response = await api.get(`/adoptions?page=${value}&limit=${limit}`);
-      setAdoptions(response?.data.data);
+      setAdoptions(response?.data?.data);
     } catch (error) {
       setLoading(false);
     }
     setLoading(false);
   };
 
+  async function handleFilterAdoptions(filter) {
+    setLoading(true);
+    setAdoptions([]);
+    try {
+      const response = await api.get(`/adoptions?page=${page}&limit=${limit}&filter=${filter}`);
+      setAdoptions(response?.data?.data);
+      setCheckedAll(false);
+      // setCheckedCats((current) => !current);
+      if (filter === 'Gato') {
+        setCheckedCats(true);
+        setCheckedDogs(false);
+      } else if (filter === 'Cachorro') {
+        setCheckedDogs(true);
+        setCheckedCats(false);
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+    }
+  }
+
   async function getAdoptionsData() {
     setLoading(true);
-
     try {
       const response = await api.get(`/adoptions?page=${page}&limit=${limit}`);
       setAdoptions(response?.data?.data);
       setCount(response?.data?.total_pages);
       setPage(response?.data?.current_page);
+      setCheckedAll(true);
+      setCheckedCats(false);
+      setCheckedDogs(false);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -99,20 +125,47 @@ export default () => {
         </TopHeader>
         <FormHeader>
           <CheckBoxContainer>
-            <LabelCheckBoxHeader for="all">Todos</LabelCheckBoxHeader>
-            <CheckBoxHeader type="checkbox" defaultChecked id="all" />
+            <LabelCheckBoxHeader
+              for="all"
+            >
+              Todos
+            </LabelCheckBoxHeader>
+            <CheckBoxHeader
+              type="checkbox"
+              checked={checkedAll}
+              id="all"
+              onClick={getAdoptionsData}
+            />
           </CheckBoxContainer>
           <CheckBoxContainer>
-            <LabelCheckBoxHeader for="dog">Cachorros</LabelCheckBoxHeader>
-            <CheckBoxHeader type="checkbox" id="dog" />
+            <LabelCheckBoxHeader
+              for="dog"
+            >
+              Cachorros
+            </LabelCheckBoxHeader>
+            <CheckBoxHeader
+              type="checkbox"
+              id="dog"
+              checked={checkedDogs}
+              onClick={() => {
+                handleFilterAdoptions('Cachorro');
+              }}
+            />
           </CheckBoxContainer>
           <CheckBoxContainer>
-            <LabelCheckBoxHeader for="cat">Gatos</LabelCheckBoxHeader>
-            <CheckBoxHeader type="checkbox" id="cat" />
-          </CheckBoxContainer>
-          <CheckBoxContainer>
-            <LabelCheckBoxHeader for="other">Outros</LabelCheckBoxHeader>
-            <CheckBoxHeader type="checkbox" id="other" />
+            <LabelCheckBoxHeader
+              for="cat"
+            >
+              Gatos
+            </LabelCheckBoxHeader>
+            <CheckBoxHeader
+              type="checkbox"
+              id="cat"
+              checked={checkedCats}
+              onClick={() => {
+                handleFilterAdoptions('Gato');
+              }}
+            />
           </CheckBoxContainer>
         </FormHeader>
       </AdoptionHeader>

@@ -82,12 +82,24 @@ export const LabelCheckBoxHeader = styled.label`
 export const CheckBoxHeader = styled.input`
   width: 20px;
   height: 20px;
+  background: ${(props) => (props.checked ? 'salmon' : 'papayawhip')};
+  border-radius: 3px;
+  transition: all 150ms;
 
   @media(max-width: 768px) {
     width: 16px;
     height: 16px;
-  } 
+  }
 `;
+
+// export const CheckBoxHeader = styled.input.attrs({ type: 'checkbox' })`
+//  display: inline-block;
+//   width: 16px;
+//   height: 16px;
+//   background: ${(props) => (props.checked ? 'salmon' : 'papayawhip')};
+//   border-radius: 3px;
+//   transition: all 150ms;
+// `;
 
 export const AdoptionMain = styled.main`
   width: 100%;
