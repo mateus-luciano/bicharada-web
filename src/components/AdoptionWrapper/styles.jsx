@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
   width: 300px;
@@ -42,4 +43,8 @@ export const TextCity = styled.span`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+`;
+
+export const LinkAdoption = styled(Link)`
+  text-decoration: none;
 `;

@@ -102,7 +102,7 @@ export const CheckBoxHeader = styled.input`
 // `;
 
 export const AdoptionMain = styled.main`
-  width: 100%;
+  width: 1260px;
   background: #8b8b8b;
   display: flex;
   flex-direction: row;

@@ -190,25 +190,25 @@ export default () => {
       </AdoptionHeader>
       <AdoptionMain>
         {adoptions.map((adoption) => (
-          <Link to={`/adoptions/${adoption.uid}`}>
-            {!adoption.attachments.length ? (
-              <AdoptionWrapper
-                key={adoption.uid}
-                image={notFoundSvg}
-                title={adoption.title}
-                text={adoption.description}
-                city={adoption.address}
-              />
-            ) : (
-              <AdoptionWrapper
-                key={adoption.uid}
-                image={adoption.attachments[0].url}
-                title={adoption.title}
-                text={adoption.description}
-                city={adoption.address}
-              />
-            )}
-          </Link>
+          !adoption.attachments.length ? (
+            <AdoptionWrapper
+              key={adoption.uid}
+              image={notFoundSvg}
+              title={adoption.title}
+              text={adoption.description}
+              city={adoption.address}
+              uid={adoption.uid}
+            />
+          ) : (
+            <AdoptionWrapper
+              key={adoption.uid}
+              image={adoption.attachments[0].url}
+              title={adoption.title}
+              text={adoption.description}
+              city={adoption.address}
+              uid={adoption.uid}
+            />
+          )
         ))}
       </AdoptionMain>
       <AdoptionFooter>
