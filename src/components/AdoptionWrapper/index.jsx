@@ -9,6 +9,7 @@ import {
   Text,
   TextCity,
   LinkAdoption as Link,
+  FooterWrapper,
 } from './styles';
 
 export default ({
@@ -23,15 +24,17 @@ export default ({
       <Image src={image} alt={title} />
       <Title>{title}</Title>
       <Text>{text}</Text>
-      <TextCity>{city}</TextCity>
-      <Link to={`/adoptions/${uid}`}>
-        <Button
-          color="primary"
-          variant="contained"
-        >
-          Ver mais
-        </Button>
-      </Link>
+      <FooterWrapper>
+        <TextCity>{city}</TextCity>
+        <Link to={`/adoptions/${uid}`}>
+          <Button
+            color="primary"
+            variant="contained"
+          >
+            Ver mais
+          </Button>
+        </Link>
+      </FooterWrapper>
     </Wrapper>
   );
 };
