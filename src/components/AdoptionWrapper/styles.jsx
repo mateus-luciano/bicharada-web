@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Wrapper = styled.div`
-  width: 306px;
+  width: 276px;
   height: 420px;
   background: #aaa;
   padding-top: 10px;
@@ -11,6 +11,18 @@ export const Wrapper = styled.div`
   flex-direction: column;
   margin: 10px 4px;
   border-radius: 6px;
+
+  @media(max-width: 1440px) {
+    width: 276px;
+  }
+
+  @media(max-width: 1366px) {
+    width: 306px;
+  }
+
+  @media(max-width: 1280px) {
+    width: 292px;
+  }
 `;
 
 export const Image = styled.img`

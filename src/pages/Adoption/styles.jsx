@@ -7,19 +7,47 @@ export const AdoptionContainer = styled(Container)`
   min-width: 1360px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  @media(max-width: 1440px) {
+    min-width: 1420px;
+  }
+
+  @media(max-width: 1366px) {
+    width: 1256px;
+  }
+
+  @media(max-width: 1280px) {
+    min-width: 1200px;
+  }
 
   @media(max-width: 768px) {
-    min-width: 360px;
-    /* justify-content: center;
-    align-items: center; */
-  } 
+    min-width: 100%;
+    width: 100vw;
+  }
 `;
 
 export const AdoptionHeader = styled.header`
-  width: 100%;
+  width: 1420px;
   height: 90px;
   background: #aaa;
   padding: 10px 0;
+
+  @media(max-width: 1440px) {
+    width: 1420px;
+  }
+
+  @media(max-width: 1366px) {
+    width: 1256px;
+  }
+
+  @media(max-width: 1280px) {
+    width: 1200px;
+  }
+
+  @media(max-width: 768px) {
+    width: 360px;
+  }
 `;
 
 export const TopHeader = styled.div`
@@ -102,13 +130,26 @@ export const CheckBoxHeader = styled.input`
 // `;
 
 export const AdoptionMain = styled.main`
-  width: 1260px;
+  width: 1420px;
   background: #8b8b8b;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
+  @media(max-width: 1440px) {
+    width: 1420px;
+  }
+
+  @media(max-width: 1366px) {
+    width: 1256px;
+  }
+
+  @media(max-width: 1280px) {
+    width: 1200px;
+  }
+
   @media(max-width: 768px) {
+    width: 360px;
     flex-direction: column;
     align-items: center;
   } 

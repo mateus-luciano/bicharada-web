@@ -43,10 +43,17 @@ export const Container = styled.div`
   padding-right: 50px;
   padding-left: 50px;
 
-  @media screen and (max-width: 991px) {
+  @media(max-width: 768px) {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  /* @media screen and (max-width: 991px) {
     padding-right: 30px;
     padding-left: 30px;
-  }
+  } */
 
   /* @media(max-width: 1366px) {
     max-width: 1300px;

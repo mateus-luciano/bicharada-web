@@ -28,12 +28,13 @@ export default () => {
   const [loading, setLoading] = useState(false);
   const [adoptions, setAdoptions] = useState([]);
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(4);
+  const [limit, setLimit] = useState(20);
   const [count, setCount] = useState(1);
   const [checkedAll, setCheckedAll] = useState(false);
   const [checkedCats, setCheckedCats] = useState(false);
   const [checkedDogs, setCheckedDogs] = useState(false);
   const [filterDefault, setFilterDefault] = useState('all');
+  const [mobile, setMobile] = useState(false);
   const options = [
     { value: 'test', label: 'Vale do Paranhana' },
     { value: 'test2', label: 'Vale do Sinos' },
@@ -54,6 +55,18 @@ export default () => {
       console.log(error);
     }
   }
+
+  // const widthSize = () => {
+  //   setLimit(8);
+  //   if (window.innerWidth >= 1340) {
+  //     setLimit(15);
+  //   } else if (window.innerWidth <= 768) {
+  //     setLimit(6);
+  //   }
+  // };
+  // useEffect(() => {
+  //   widthSize();
+  // }, []);
 
   const handleChange = async (event, value) => {
     setLoading(true);
@@ -105,6 +118,10 @@ export default () => {
     getRegionsData();
   }, []);
 
+  // useEffect(() => {
+  //   handleFilterAdoptions('all');
+  // }, [limit]);
+
   // async function getAdoptionsData() {
   //   setLoading(true);
   //   try {
@@ -124,7 +141,7 @@ export default () => {
   //   getAdoptionsData();
   //   getRegionsData();
   // }, []);
-
+  // window.addEventListener('resize', widthSize);
   return(
     <AdoptionContainer>
       <Spinner visible={loading} />

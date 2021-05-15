@@ -44,7 +44,7 @@ import {
   Span,
   SpanAddress,
   ButtonDelete,
-} from './style';
+} from './styles';
 
 export default () => {
   const { slug } = useParams();
