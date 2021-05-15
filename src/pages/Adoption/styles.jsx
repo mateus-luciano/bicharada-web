@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Container, Button } from '../../styles/global';
 
 export const AdoptionContainer = styled(Container)`
-  min-width: 1360px;
+  //min-width: 1360px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ export const AdoptionContainer = styled(Container)`
   }
 
   @media(max-width: 1366px) {
-    width: 1256px;
+    min-width: 1360px;
   }
 
   @media(max-width: 1280px) {

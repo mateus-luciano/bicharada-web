@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Image = styled.img`
-  max-width: 290px;
+  max-width: 264px;
   width: 100%;
   height: 240px;
   margin: 0 auto;
@@ -35,6 +35,18 @@ export const Image = styled.img`
   object-fit: cover;
   // border: 1px solid #000;
   border-radius: 6px;
+
+  @media(max-width: 1440px) {
+    max-width: 240px;
+  }
+
+  @media(max-width: 1366px) {
+    max-width: 290px;
+  }
+
+  @media(max-width: 1280px) {
+    max-width: 280px;
+  }
 `;
 
 export const Title = styled.h1`

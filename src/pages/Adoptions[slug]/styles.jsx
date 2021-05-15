@@ -37,8 +37,10 @@ export const Image = styled.img`
   object-fit: contain;
 
   @media(max-width: 768px) {
-    width: 320px;
-    height: 320px;
+    max-width: 330px;
+    max-height: 420px;
+    width: 100%;
+    height: 100%;
   } 
 `;
 
@@ -77,6 +79,10 @@ export const DetailWrapperMain = styled.div`
   height: 260px;
   border: 3px solid #aaa;
   border-radius: 10px;
+
+  @media(max-width: 768px) {
+    max-height: 260px;
+  } 
 `;
 
 export const DetailWrapperFooter = styled.div`
