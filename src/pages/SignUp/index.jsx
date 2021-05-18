@@ -295,11 +295,20 @@ export default () => {
                   <MenuItem value="" disabled>
                     Cidade
                   </MenuItem>
-                  <MenuItem value="Sapiranga">Sapiranga</MenuItem>
-                  <MenuItem value="Campo Bom">Campo Bom</MenuItem>
-                  <MenuItem value="Novo Hamburgo">Novo Hamburgo</MenuItem>
-                  <MenuItem value="São Leopoldo">São Leopoldo</MenuItem>
                   <MenuItem value="Araricá">Araricá</MenuItem>
+                  <MenuItem value="Campo Bom">Campo Bom</MenuItem>
+                  <MenuItem value="Canoas">Canoas</MenuItem>
+                  <MenuItem value="Dois Irmãos">Dois Irmãos</MenuItem>
+                  <MenuItem value="Estância Velha">Estância Velha</MenuItem>
+                  <MenuItem value="Esteio">Esteio</MenuItem>
+                  <MenuItem value="Ivoti">Ivoti</MenuItem>
+                  <MenuItem value="Nova Hartz">Nova Hartz</MenuItem>
+                  <MenuItem value="Nova Santa Rita">Nova Santa Rita</MenuItem>
+                  <MenuItem value="Novo Hamburgo">Novo Hamburgo</MenuItem>
+                  <MenuItem value="Portão">Portão</MenuItem>
+                  <MenuItem value="São Leopoldo">São Leopoldo</MenuItem>
+                  <MenuItem value="Sapiranga">Sapiranga</MenuItem>
+                  <MenuItem value="Sapucaia do Sul">Sapucaia do Sul</MenuItem>
                 </Select>
               ) }
               <FormHelperText>Selecione a sua cidade</FormHelperText>
