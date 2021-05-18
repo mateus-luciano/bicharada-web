@@ -272,9 +272,16 @@ export default () => {
                   <MenuItem value="" disabled>
                     Cidade
                   </MenuItem>
-                  <MenuItem value="Parobé">Parobé</MenuItem>
-                  <MenuItem value="Taquara">Taquara</MenuItem>
                   <MenuItem value="Igrjinha">Igrejinha</MenuItem>
+                  <MenuItem value="Lindolfo Collor">Lindolfo Collor</MenuItem>
+                  <MenuItem value="Morro Reuter">Morro Reuter</MenuItem>
+                  <MenuItem value="Parobé">Parobé</MenuItem>
+                  <MenuItem value="Presidente Lucena">Presidente Lucena</MenuItem>
+                  <MenuItem value="Riozinho">Riozinho</MenuItem>
+                  <MenuItem value="Rolante">Rolante</MenuItem>
+                  <MenuItem value="Santa Maria do Herval">Santa Maria do Herval</MenuItem>
+                  <MenuItem value="Taquara">Taquara</MenuItem>
+                  <MenuItem value="Três Coroas">Três Coroas</MenuItem>
                 </Select>
               ) : (
                 <Select
